@@ -1,6 +1,7 @@
 library(tidyverse)
 library(ggplot2)
 library(usmap)
+library(ggthemes)
 
 setwd("~/gov1347/election_analytics_blog/scripts")
 
@@ -53,4 +54,62 @@ plot_usmap(data = pv_swing_00_04, regions = "states", values = "swing_red") +
 
 ggsave("../figures/swing_00_04.png", height = 4, width = 8)
 
+swing_closer_08_12 <- pvstate_df %>%
+  filter(year %in% c(2008, 2012)) %>%
+  select(state, year, D_pv2p, R_pv2p) %>%
+  mutate(margin = D_pv2p-R_pv2p) %>%
+  select(state, year, margin) %>% 
+  pivot_wider(names_from = year, values_from = margin) %>% 
+  rename(year_2008 = "2008") %>% 
+  rename(year_2012 = "2012") %>% 
+  mutate(closer = (abs(year_2008) > abs(year_2012))) %>% 
+  group_by(closer) %>% 
+  summarise(smaller_margin = n()) %>% 
+  ungroup() %>% 
+  mutate(proportion_closer = smaller_margin/sum(smaller_margin)) %>% 
+  mutate(closer = str_replace(closer, "TRUE", "Closer")) %>% 
+  mutate(closer = str_replace(closer, "FALSE", "Less Close"))
+
+mycolors <- c("#F0FC62", "#D0A2F5")
+
+ggplot(swing_closer_08_12, aes(x ="", y=proportion_closer, fill = closer))+
+  geom_bar(width = 1, stat = "identity")+
+  coord_polar("y", start=0)+
+  ylab("")+
+  xlab("")+
+  labs(title = "Proportion of States with Closer Popular Votes in 2012 than 2008")+
+  theme_minimal()+
+  theme(legend.title = element_blank())+
+  scale_fill_manual(values = mycolors)
+
+ggsave("../figures/closer_08_12.png", height = 5, width = 7)
+
+
+swing_closer_00_04 <- pvstate_df %>%
+  filter(year %in% c(2000, 2004)) %>%
+  select(state, year, D_pv2p, R_pv2p) %>%
+  mutate(margin = D_pv2p-R_pv2p) %>%
+  select(state, year, margin) %>% 
+  pivot_wider(names_from = year, values_from = margin) %>% 
+  rename(year_2000 = "2000") %>% 
+  rename(year_2004 = "2004") %>% 
+  mutate(closer = (abs(year_2000) > abs(year_2004))) %>% 
+  group_by(closer) %>% 
+  summarise(smaller_margin = n()) %>% 
+  ungroup() %>% 
+  mutate(proportion_closer = smaller_margin/sum(smaller_margin)) %>% 
+  mutate(closer = str_replace(closer, "TRUE", "Closer")) %>% 
+  mutate(closer = str_replace(closer, "FALSE", "Less Close"))
+
+ggplot(swing_closer_00_04, aes(x ="", y=proportion_closer, fill = closer))+
+  geom_bar(width = 1, stat = "identity")+
+  coord_polar("y", start=0)+
+  ylab("")+
+  xlab("")+
+  labs(title = "Proportion of States with Closer Popular Votes in 2004 than 2000")+
+  theme_minimal()+
+  theme(legend.title = element_blank())+
+  scale_fill_manual(values = mycolors)
+
+ggsave("../figures/closer_00_04.png", height = 5, width = 7)
 
