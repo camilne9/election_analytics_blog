@@ -13,7 +13,7 @@ library(usmap)
 
 ## set working directory here
 #setwd("~/Google Drive Harvard/Courses/Gov1347-ElectionAnalytics-2020/Public/01-Intro_09-07-2020")
-setwd("~/gov1347/election_analytics_blog")
+setwd("~/gov1347/election_analytics_blog/scripts")
 
 ####----------------------------------------------------------#
 #### Read and clean pres pop vote ####
@@ -98,14 +98,14 @@ ggplot(popvote_df, aes(x = year, y = pv2p, colour = party)) +
     my_pretty_theme
 
 ## saves last displayed plot
-ggsave("PV_national_historical.png", height = 4, width = 8)
+ggsave("../figures/PV_national_historical.png", height = 4, width = 8)
 
 ####----------------------------------------------------------#
 #### State-by-state map of pres pop votes ####
 ####----------------------------------------------------------#
 
 ## read in state pop vote
-pvstate_df <- read_csv("popvote_bystate_1948-2016.csv")
+pvstate_df <- read_csv("../data/popvote_bystate_1948-2016.csv")
 pvstate_df$full <- pvstate_df$state
 
 ## shapefile of states from `usmap` library
@@ -156,7 +156,7 @@ plot_usmap(data = pv_map_grid, regions = "states", values = "winner", color = "w
     theme(strip.text = element_text(size = 12),
           aspect.ratio=1)
 
-ggsave("PV_states_historical.png", height = 3, width = 8)
+ggsave("../figures/PV_states_historical.png", height = 3, width = 8)
 
 
 ####----------------------------------------------------------#
