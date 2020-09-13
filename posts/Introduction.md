@@ -1,1 +1,1 @@
-## Introduction blog post
+## Introduction
