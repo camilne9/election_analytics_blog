@@ -24,7 +24,7 @@ plot_usmap(data = pv_swing_08_12, regions = "states", values = "swing_red") +
     low = "blue", 
     breaks = c(-10,-5,0,5,10), 
     limits = c(-10.5,10.5),
-    name = "Republican Swing"
+    name = "Swing"
   ) +
   theme_void()+
   labs(title = "Change in Two Party Vote Share 2008 to 2012")
