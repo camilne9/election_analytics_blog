@@ -96,9 +96,9 @@ predict(lm_econ, GDP_new)
 ##   replication of: https://nyti.ms/3jWdfjp
 
 economy_df %>%
-  subset(quarter == 2 & !is.na(GDP_growth1)) %>%
-  ggplot(aes(x=year, y=GDP_growth1,
-             fill = (GDP_growth1 > 0))) +
+  subset(quarter == 2 & !is.na(GDP_growth_qt)) %>%
+  ggplot(aes(x=year, y=GDP_growth_qt,
+             fill = (GDP_growth_qt > 0))) +
   geom_col() +
   xlab("Year") +
   ylab("GDP Growth (Second Quarter)") +
