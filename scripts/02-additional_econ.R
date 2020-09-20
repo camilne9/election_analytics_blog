@@ -1,3 +1,11 @@
+# In this R script I attempt to find a strong correlation between unemployment percentage
+# (and in particular change in unemployment) on a state level and the the two party vote
+# share of the incumbent in that state. Since I did not find a strong correlation using any
+# attempted variant of the state level unemployment data, I conclude that it is unreasonable
+# to create a model based on this variable. Thus, my model focuses on national economic data.
+# This script shows attempts to find correlation involving state level unemployment data. It
+# can be completely disregarded, though I included it for reference. 
+
 library(tidyverse)
 library(ggplot2)
 library(usmap)
