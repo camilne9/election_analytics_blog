@@ -1,3 +1,6 @@
+# In this script I create all of the dataframes/plots/regressions for 
+# my model and post on predicting elections based on the economy.
+
 library(tidyverse)
 library(ggplot2)
 library(usmap)
@@ -93,7 +96,10 @@ summary(lm_inc_econ)
 lm_newer <- lm(RDI_growth ~ pv2p, data = model_newer)
 summary(lm_non_inc_econ)
 
-# Now I create a nicer plot showing the 
+# Now I create a nicer plot showing the scatter plots with their regression lines
+# for the RDI growth base case and the cases that consider the effect of 
+# incumbency and the effect of time.
+
 model %>% 
   ggplot(aes(x = RDI_growth, y = pv2p))+
   geom_point()+
@@ -103,6 +109,8 @@ model %>%
        x = "RDI Growth in 3rd quarter of Election Year",
        y = "Two Party Vote Share of Incumbent Party")+
   theme_solarized_2()
+
+ggsave("../figures/rdi_growth_basic.png", height = 4, width = 8)
 
 model %>% 
   mutate(incumbent = str_replace(incumbent, "FALSE", "Non-Incumbent")) %>% 
@@ -117,6 +125,8 @@ model %>%
   theme_solarized_2()+
   theme(legend.title = element_blank())
 
+ggsave("../figures/rdi_growth_incumbent.png", height = 4, width = 8)
+
 model %>% 
   mutate(older = str_replace(older, "TRUE", "1960-1988")) %>% 
   mutate(older = str_replace(older, "FALSE", "1992-2016")) %>% 
@@ -130,6 +140,8 @@ model %>%
   theme_solarized_2()+
   scale_fill_discrete(name = "Election Years")+
   theme(legend.title = element_blank())
+
+ggsave("../figures/rdi_growth_age.png", height = 4, width = 8)
   
   
   
