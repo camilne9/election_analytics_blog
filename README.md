@@ -5,4 +5,4 @@ Welcome to my 2020 election analytics blog! I will be updating my blog weekly ex
 This is my first blog post for Harvard's Gov1347: Election Analytics discussing swings in two party voting percentages in US presidential Elections. (9/13/2020)
 
 ## [Economy](posts/economy.md)
-In this post I consider how state level unemployment can be used to predict the presidential election at the state level. (9/20/2020)
+In this post I consider how RDI growth in the third quarter of an election year can be used to predict the two party vote share of the incumbent party. I consider how the predictions based on RDI growth differ for incumbent presidents and non-incumbent candidates as well as how predictions differ for elections from 1960-1988 and from 1992-2016. (9/20/2020)
