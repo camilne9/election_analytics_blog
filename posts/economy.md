@@ -24,9 +24,11 @@ First, we can consider the trend given by RDI growth.
 ![image of RDI growth vs two party vote share](../figures/rdi_growth_basic.png)
 
 Now, we can consider how this trend differs when we consider the separate cases of a incumbent and non-incumbent candidate for the incumbent party.
+
 ![image of RDI growth vs two party vote share by incumbency](../figures/rdi_growth_incumbent.png)
 
 Finally, we can consider how this trend differs when we consider the separate cases of more and less recent elections as defined above.
+
 ![image of RDI growth vs two party vote share by election year](../figures/rdi_growth_age.png)
 
 # Analysis of Trends in RDI Growth Based Models
@@ -45,10 +47,12 @@ Additionally, it is necessary to note that not all of these regression lines hav
 
 # Prediction
 
-We can consider the proportion of the two party vote share we expect Donald Trump to get based on these models. However, RDI growth data for 3rd quarter of 2020 is not yet available. Thus, for the sake of prediction, we must first speculate what the RDI growth might be for the 3rd quarter of 2020. (Once the data becomes available, it is possible to update our prediction with that data, but for now we must speculate.)
+We can consider the proportion of the two party vote share we expect Donald Trump to get based on these models. However, RDI growth data for 3rd quarter of 2020 is not yet available. Thus, for the sake of prediction, we must first speculate what the RDI growth might be for the 3rd quarter of 2020. (Once the data becomes available, it is possible to update our prediction with that data, but for now we must speculate.) We know that the [RDI growth in July was -0.1%](https://www.bea.gov/news/2020/personal-income-and-outlays-july-2020#:~:text=Disposable%20personal%20income%20(DPI)%20increased,(tables%205%20and%207).). Since we don't have more recent RDI growth data, we will use the data from July as a proxy for the quarter. This may ultimately be a poor assumption, particularly given the economy volatility due to the coronavirus, but in the absence of more data, this will form the basis of my prediction.
 
-| Model                    | Trump's Predicted Vote Two-Party Vote Share  |   |   |   |
-|--------------------------|----------------------------------------------|---|---|---|
-| Simple RDI Growth        |                                              |   |   |   |
-| RDI Growth by Incumbency |                                              |   |   |   |
-| RDI Growth by Recency    |                                              |   |   |   |
+| Model                    | Trump's Predicted Vote Two-Party Vote Share  | Margin of Error
+|--------------------------|----------------------------------------------|----------------
+| Simple RDI Growth        |                  20.2%                       |30.6%
+| RDI Growth by Incumbency |                   6.3%                       |73.0%   
+| RDI Growth by Recency    |                  36.9%                       |28.6%     
+
+Ultimately the predictive power of this model is not especially strong as evidence by the large margin or error for the 

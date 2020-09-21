@@ -69,34 +69,34 @@ model %>%
   geom_point()
 
 # Now I check the predictive ability of models based on different variables
-lm_econ <- lm(RDI_growth ~ pv2p, data = model)
+lm_econ <- lm(pv2p ~ RDI_growth, data = model)
 summary(lm_econ)
 
-lm_gdp <- lm(GDP_growth_qt ~ pv2p, data = model)
+lm_gdp <- lm(pv2p ~ GDP_growth_qt, data = model)
 summary(lm_gdp)
 
-lm_stock <- lm(stock_growth ~ pv2p, data = model)
+lm_stock <- lm(pv2p ~ stock_growth, data = model)
 summary(lm_gdp)
 
-lm_unemp <- lm(unemployment ~ pv2p, data = model)
+lm_unemp <- lm(pv2p ~ unemployment, data = model)
 summary(lm_gdp)
 
 # I observe that RDI growth shows the best predictive power, so I will
 # chose my model based on 3rd quarter RDI growth
 
-lm_inc_econ <- lm(RDI_growth ~ pv2p, data = model_inc)
+lm_inc_econ <- lm(pv2p ~ RDI_growth, data = model_inc)
 summary(lm_inc_econ)
 
-lm_non_inc_econ <- lm(RDI_growth ~ pv2p, data = model_non_inc)
+lm_non_inc_econ <- lm(pv2p ~ RDI_growth, data = model_non_inc)
 summary(lm_non_inc_econ)
 
-lm_older <- lm(RDI_growth ~ pv2p, data = model_older)
-summary(lm_inc_econ)
+lm_older <- lm(pv2p ~ RDI_growth, data = model_older)
+summary(lm_older)
 
-lm_newer <- lm(RDI_growth ~ pv2p, data = model_newer)
-summary(lm_non_inc_econ)
+lm_newer <- lm(pv2p ~ RDI_growth, data = model_newer)
+summary(lm_newer)
 
-# Now I create a nicer plot showing the scatter plots with their regression lines
+# Now I create nicer plots showing the scatter plots with their regression lines
 # for the RDI growth base case and the cases that consider the effect of 
 # incumbency and the effect of time.
 
@@ -142,6 +142,14 @@ model %>%
   theme(legend.title = element_blank())
 
 ggsave("../figures/rdi_growth_age.png", height = 4, width = 8)
+
+
+# Now I can make predictions about Trump based on an assumed 3rd quarter RDI growth of -0.1%
+ new_rdi <- data.frame(RDI_growth = -0.1)
+
+predict(lm_econ, newdata = new_rdi, interval = "prediction")
+predict(lm_inc_econ, newdata = new_rdi, interval = "prediction")
+predict(lm_newer, newdata = new_rdi, interval = "prediction")
   
   
   
