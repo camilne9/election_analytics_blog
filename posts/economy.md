@@ -51,9 +51,11 @@ We can consider the proportion of the two party vote share we expect Donald Trum
 | RDI Growth by Incumbency |                   6.3%                       |73.0%   
 | RDI Growth by Recency    |                  36.9%                       |28.6%     
 
-Ultimately the predictive power of this model is not especially strong as evidence by the large margin or error for the predicted two-party vote share. 
+Ultimately the predictive power of this model is not especially strong as evidence by the large margin or error for the predicted two-party vote share. This means that despite the fact that the my predictions indicate that Trump will lose the two party popular vote, it is within a reasonable margin of error that he actually win the two party popular vote. This unfortunately means that my model (as it currently exists) is not especially useful in terms of predicting the result of the 2020 presidential election.
 
-Furthermore, we can expect that -even if the predictive power of the model was generally very strong- the fact that coronavirus is causing unprecedented 
+Furthermore, we can expect that -even if the predictive power of the model was generally very strong- the fact that coronavirus is causing unprecedented economic conditions may make economic based predictions less effective. That is to say, *the unusual factors that cause the observed extreme economic values are not well captured by the regression line because past fluctuations of economic variables like RDI growth were not effected by things like a pandemic*.
+
+In conclusion, it is necessary to update my model beyond RDI growth to generate a more statistically significant prediction about the 2020 US presidential election.
 
 [^1]: [Healy and Lenz, 2014] Healy, A. and Lenz, G. S. (2014). Substituting the End for the Whole: Why Voters Respond Primarily to the Election-Year Economy. American journal of political science, 58(1):31–47.
 
