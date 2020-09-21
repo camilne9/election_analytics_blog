@@ -19,12 +19,36 @@ I chose to consider the economic indicator of **RDI (real disposable income)** r
 
 # Implementation of Model
 
+First, we can consider the trend given by RDI growth.
+
 ![image of RDI growth vs two party vote share](../figures/rdi_growth_basic.png)
 
+Now, we can consider how this trend differs when we consider the separate cases of a incumbent and non-incumbent candidate for the incumbent party.
 ![image of RDI growth vs two party vote share by incumbency](../figures/rdi_growth_incumbent.png)
 
+Finally, we can consider how this trend differs when we consider the separate cases of more and less recent elections as defined above.
 ![image of RDI growth vs two party vote share by election year](../figures/rdi_growth_age.png)
+
+# Analysis of Trends in RDI Growth Based Models
+
+We observe that in all cases the slope of the regression line is positive. This can be interpreted as indicating that as RDI increases more, the incumbent party is expected to acquire a large portion of the two party vote share. This trend matches our intuition because it means that as voters have a more positive economic experience near the election, they are more likely to vote to keep the party that gave them that positive economic experience.
+
+We also observe that RDI growth has a greater impact on an incumbent president than a non-incumbent. This trend seems to make sense becasue it means that voters associate the economy right before the election to reflect more heavily on the incumbent themself than the incumbent's party in general.
+
+
+Furthermore, we observe that in more recent elections RDI growth has a smaller impact on the incumbent party vote share than in less recent elections. This may be the result of greater availability of economic data in more recent elections which allows voters to weight other factors (such as non-3rd quarter factors) more heavily than they otherwise might have be inclined to. This interpretation is consistent with the fact that the "more recent" regression fits the data more closely than the "less recent data" (as assessed by the r-squared values) which means that the variability in the trend can be better accounted for by RDI growth in "less recent" elections.
+
+
+Additionally, it is necessary to note that not all of these regression lines have the same predictive power. 
+
+
 
 # Prediction
 
-We can consider the proportion of the two party vote share we expect Donald Trump to get based on these models.
+We can consider the proportion of the two party vote share we expect Donald Trump to get based on these models. However, RDI growth data for 3rd quarter of 2020 is not yet available. Thus, for the sake of prediction, we must first speculate what the RDI growth might be for the 3rd quarter of 2020. (Once the data becomes available, it is possible to update our prediction with that data, but for now we must speculate.)
+
+| Model                    | Trump's Predicted Vote Two-Party Vote Share  |   |   |   |
+|--------------------------|----------------------------------------------|---|---|---|
+| Simple RDI Growth        |                                              |   |   |   |
+| RDI Growth by Incumbency |                                              |   |   |   |
+| RDI Growth by Recency    |                                              |   |   |   |
