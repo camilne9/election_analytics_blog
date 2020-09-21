@@ -47,9 +47,9 @@ We can consider the proportion of the two party vote share we expect Donald Trum
 
 | Model                    | Trump's Predicted Vote Two-Party Vote Share  | Error
 |--------------------------|----------------------------------------------|----------------
-| Simple RDI Growth        |                  20.2%                       |$\pm$30.6%
-| RDI Growth by Incumbency |                   6.3%                       |73.0%   
-| RDI Growth by Recency    |                  36.9%                       |28.6%     
+| Simple RDI Growth        |                  20.2%                       |±30.6%
+| RDI Growth by Incumbency |                   6.3%                       |±73.0%   
+| RDI Growth by Recency    |                  36.9%                       |±28.6%     
 
 # Conclusion
 
