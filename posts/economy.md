@@ -41,13 +41,9 @@ We also observe that **RDI growth has a greater impact on an incumbent president
 Furthermore, we observe that **in more recent elections RDI growth has a smaller impact on the incumbent party vote share than in less recent elections**. This may be the result of greater availability of economic data in more recent elections which allows voters to weight other factors (such as non-3rd quarter factors) more heavily than they otherwise might have be inclined to. This interpretation is consistent with the fact that the "more recent" regression fits the data more closely than the "less recent data" (as assessed by the r-squared values) which means that the variability in the trend can be better accounted for by RDI growth in "less recent" elections.
 
 
-Additionally, it is necessary to note that not all of these regression lines have the same predictive power. 
-
-
-
 # Prediction
 
-We can consider the proportion of the two party vote share we expect Donald Trump to get based on these models. However, RDI growth data for 3rd quarter of 2020 is not yet available. Thus, for the sake of prediction, we must first speculate what the RDI growth might be for the 3rd quarter of 2020. (Once the data becomes available, it is possible to update our prediction with that data, but for now we must speculate.) We know that the [RDI growth in July was -0.1%](https://www.bea.gov/news/2020/personal-income-and-outlays-july-2020#:~:text=Disposable%20personal%20income%20(DPI)%20increased,(tables%205%20and%207).). **Since we don't have more recent RDI growth data, we will use the data from July as a proxy for the quarter**. This may ultimately be a poor assumption, particularly given the economy volatility due to the coronavirus, but in the absence of more data, this will form the basis of my prediction.
+We can consider the proportion of the two party vote share we expect Donald Trump to get based on these models. However, RDI growth data for 3rd quarter of 2020 is not yet available. Thus, for the sake of prediction, we must first speculate what the RDI growth might be for the 3rd quarter of 2020. (Once the data becomes available, it is possible to update our prediction with that data, but for now we must speculate.) We know that the [RDI growth in July was -0.1%](https://www.bea.gov/news/2020/personal-income-and-outlays-july-2020#:~:text=Disposable%20personal%20income%20(DPI)%20increased,(tables%205%20and%207).). **Since we don't have more recent RDI growth data, we will use the data from July as a proxy for the third quarter**. This may ultimately be a poor assumption, particularly given the economy volatility due to the coronavirus, but in the absence of more data, this will form the basis of my prediction.
 
 | Model                    | Trump's Predicted Vote Two-Party Vote Share  | Margin of Error
 |--------------------------|----------------------------------------------|----------------
@@ -57,6 +53,8 @@ We can consider the proportion of the two party vote share we expect Donald Trum
 
 Ultimately the predictive power of this model is not especially strong as evidence by the large margin or error for the predicted two-party vote share. 
 
+Furthermore, we can expect that -even if the predictive power of the model was generally very strong- the fact that coronavirus is causing unprecedented 
+
 [^1]: [Healy and Lenz, 2014] Healy, A. and Lenz, G. S. (2014). Substituting the End for the Whole: Why Voters Respond Primarily to the Election-Year Economy. American journal of political science, 58(1):31–47.
 
-[^2]: I also found that if I adjusted my model to use GDP it was less effect at accounting for the variation in the incumbent vote share than an RDI growth based model as evidenced by its lesser r-squared value for its regression line.
+[^2]: I also found that if I adjusted my model to use economic variables other than RDI (such as GDP growth and unemployment percentage) the model was less effect at accounting for the variation in the incumbent vote share than an RDI growth based model as evidenced by q lesser r-squared value for its regression line.
