@@ -2,6 +2,7 @@ library(tidyverse)
 library(ggplot2)
 library(lubridate)
 library(zoo)
+library(ggthemes)
 
 setwd("~/gov1347/election_analytics_blog/scripts")
 
@@ -114,9 +115,15 @@ state_accuracy <- electoral_college %>%
 # Now we can plot the difference between the predicted and 
 state_accuracy %>% 
   left_join(electors, by = c('year')) %>% 
+  filter(month >=2) %>% 
   mutate(electoral_diff = 100*(republican_electoral_votes/538 - actual_republican_votes/538)) %>% 
-  ggplot(aes(x = month, y = electoral_diff))+
-  geom_point()
+  ggplot(aes(x = month(month, label= TRUE), y = electoral_diff))+
+  geom_point()+
+  labs(title = "Error in Electoral Vote Prediction Based on State Polls by Month",
+       subtitle = "Normalized to 100 Total Electoral Votes",
+       x = "Month",
+       y = "Error in Electoral Vote prediction")+
+  theme_solarized_2()
 
 
 cleaned_nat %>% 
