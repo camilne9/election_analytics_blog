@@ -38,7 +38,11 @@ Based on the results of our analysis, we see that we should increase the weighti
 
 ***Electoral Prediction = (10 - months until election)/10 * State Poll Prediction+ (months until election)/10 * National Poll Prediction***
 
-This 
+In this equation, "State Poll Prediction" indicates the number of electoral votes predicted by the state polling data for a given party. (This number is out of 538, not normalized to 100 because we will normalize the national popular vote to 538.) "National Poll Prediction" is the number the number of electoral votes a candidate would get if their two party vote share in the national poll converted proportionally to the 538 electoral votes.
 
+This scheme means that while data about the election that would give us precision in our prediction (namely state polling) is unavailable, we use broader information about the electorate to qualify our expectation and as thorough state polling developing we reduce our reliance on national polling (which is not especially predictive on a margin necessary to predict the election).
 
 # Prediction
+
+I acquired recent polling data (as of 9/27/2020) from [FiveThirtyEight](https://projects.fivethirtyeight.com/polls/president-general/national/). ***Based on this data, my model predicts that Republican candidate Donald Trump will earn 199 electoral votes.***
+This would mean that **Democratic candidate Joe Biden would win the presidency**.
