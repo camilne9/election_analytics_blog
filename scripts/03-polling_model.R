@@ -63,6 +63,8 @@ cleaned_state <- state_polls %>%
   ungroup()
 
 # Now we can map the candidate with greater support onto the state's electoral vote count.
+
+# First we add months to the electoral votes over time dataset.
 electoral_college_mod <- electoral_college %>% 
   mutate(month1 = 1) %>% 
   mutate(month2 = 2) %>% 
@@ -82,6 +84,8 @@ electoral_college_mod <- electoral_college %>%
                values_to = "month") %>% 
   select(-name)
 
+# Now we get the previous winner so that we can predict states that have not yet been polled
+# for the given election cycle
 previous_winner <- pop_vote_state %>% 
   mutate(winner = (D > R)) %>% 
   select(year, state, winner) %>% 
@@ -89,7 +93,8 @@ previous_winner <- pop_vote_state %>%
   mutate(winner = str_replace(winner, "FALSE", "republican")) %>% 
   mutate(year = year + 4)
   
-
+# Now we get number of electors predicted for the republicans based on the polls and filling
+# in the gaps with the most recent data
 electors <- cleaned_state %>% 
   right_join(electoral_college_mod, by = c('year', 'state', 'month')) %>% 
   arrange(year, state, month) %>% 
@@ -104,7 +109,7 @@ electors <- cleaned_state %>%
   group_by(year, month) %>% 
   summarize(republican_electoral_votes = sum(rep_elector))
 
-# here we find the number of electoral votes earned by republicans in each election
+# Here we find the number of electoral votes earned by republicans in each election
 state_accuracy <- electoral_college %>% 
   left_join(pop_vote_state, by = c('state', 'year')) %>% 
   mutate(rep_win = (R>D)) %>% 
@@ -112,7 +117,7 @@ state_accuracy <- electoral_college %>%
   group_by(year) %>% 
   summarize(actual_republican_votes = sum(electors))
   
-# Now we can plot the difference between the predicted and 
+# Now we can plot the difference between the predicted and actual electoral vote counts
 state_accuracy %>% 
   left_join(electors, by = c('year')) %>% 
   filter(month >=2) %>% 
@@ -124,11 +129,4 @@ state_accuracy %>%
        x = "Month",
        y = "Error in Electoral Vote prediction")+
   theme_solarized_2()
-
-
-cleaned_nat %>% 
- # filter(year == 2012) %>% 
-  group_by(year) %>% 
-  ggplot(aes(x = month, y = 538*rep2p))+
-  geom_point()
   
