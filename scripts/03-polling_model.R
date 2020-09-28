@@ -11,6 +11,7 @@ state_polls <- read_csv("../data/pollavg_bystate_1968-2016.csv")
 electoral_college <- read_csv("../data/ec_1952-2020.csv") 
 pop_vote <- read_csv("../data/popvote_1948-2016.csv") 
 pop_vote_state <- read_csv("../data/popvote_bystate_1948-2016.csv") 
+current_polls <- read_csv("../data/current_state_poll_9-27.csv")
 
 # First we will take the data from national polls and map it onto two party vote 
 # share as a function month in the election year
@@ -43,8 +44,15 @@ nat_accuracy <- pop_vote %>%
 
 #Here we plot the difference in the prediction and the final republican vote share
 nat_accuracy %>% 
-  ggplot(aes(x = month, y = rep_diff))+
-  geom_point()
+  ggplot(aes(x = month(month, label= TRUE), y = rep_diff))+
+  geom_point()+
+  labs(title = "Error in Popular Vote Prediction Based on National Polls by Month",
+       subtitle = "Normalized as Two Party Vote Share",
+       x = "Month",
+       y = "Error in Popular Vote Prediction")+
+  theme_solarized_2()
+
+ggsave("../figures/national_poll_accuracy.png", height = 4, width = 8)
 
 # Now lets look at the accuracy of state polling
 
@@ -127,6 +135,29 @@ state_accuracy %>%
   labs(title = "Error in Electoral Vote Prediction Based on State Polls by Month",
        subtitle = "Normalized to 100 Total Electoral Votes",
        x = "Month",
-       y = "Error in Electoral Vote prediction")+
+       y = "Error in Electoral Vote Prediction")+
   theme_solarized_2()
+
+ggsave("../figures/state_poll_accuracy.png", height = 4, width = 8)
+
+# model:
+# Electoral Prediction = 
+# (10 - months until election)/10 * State Poll Prediction + 
+# (months until election)/10 * National Poll Prediction
+
+state_polls <- current_polls %>% 
+  filter(leading_party == "R") %>% 
+  summarize(sum(electors)) %>% 
+  deframe()
   
+# Current national polls have Republicans polled at 43.1% and Democrats polled at 50.2%
+# We convert to two party share and scale by 538 electoral votes:
+
+national_polls <- 43.1/(43.1+50.2)*538
+
+
+# Now we define our number of months left
+month_left <- 2
+
+# Finally we make a prediction for Trump's electoral vote share:
+prediction <- (10-month_left)/10*state_polls + month_left/10*national_polls
