@@ -52,7 +52,7 @@ nat_accuracy %>%
        y = "Error in Popular Vote Prediction")+
   theme_solarized_2()
 
-ggsave("../figures/national_poll_accuracy.png", height = 4, width = 8)
+ggsave("../figures/national_poll_accuracy.png", height = 6, width = 8)
 
 # Now lets look at the accuracy of state polling
 
@@ -138,7 +138,7 @@ state_accuracy %>%
        y = "Error in Electoral Vote Prediction")+
   theme_solarized_2()
 
-ggsave("../figures/state_poll_accuracy.png", height = 4, width = 8)
+ggsave("../figures/state_poll_accuracy.png", height = 6, width = 8)
 
 # model:
 # Electoral Prediction = 
