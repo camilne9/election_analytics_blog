@@ -19,11 +19,19 @@ However, this normalization is not a perfect solution to comparing **electoral v
 
 One might ask why we bother to consider electoral predictions at all instead of also using the state polling to predict national two party vote share. While this would allow for easier comparison of the two types of polling data, since the **electoral college is ultimately what determines the presidency** (not the popular vote share), it is more important to know what this electoral college result will be. As such, I chose to consider the electoral vote counts at the expense of some cleanliness of comparison.
 
-# Conclusion
-We found that when the election is far away, national polling gives a better indication for who will win the election and when the election is close, th
+# Plots
+
+First we can consider the predictive ability of the national popular vote polling. I use **month-by-month polling data** (from February to November) in each election year from 1968 to 2016. For each month I consider the ***difference*** in the *two party vote share for Republicans suggested by the polled support rates* for the two major parties and the *actual portion of the two party vote share* that went to Republicans in that election year. (The choice to show the difference for Republican instead of Democrats has no consequences because we assume that all votes and electoral votes must go to one of these two parties.)
+
+(INSERT PLOT HERE)
+
+We can similarly consider the predictive ability of the state polls by plotting the ***difference*** between the *electoral college result suggested by which candidate is leading in polls each state* and *the actual electoral college result* from that election year. (As with the national polls, I consider this difference for Republicans but this is simply the additive inverse of what it would be for Democrats.) 
+
+# Analysis of Plots
+We observe that **when the election is far away, national polling gives a better indication** for who will win the election and **when the election is close, the state polling gives a better indication** of who will win the election. Over time the national polling data converges on the correct two-party vote, but it does not converge very much. In contrast, long before the election, the state polling does not give a very good prediction of the result, but it converges dramatically as the election approaches. This result is likely the result of the distortion caused by the electoral college system. Since a candidate can lose the election with a higher two-party vote share, *the* ***location*** *of the votes they earn is highly relevant in addition to the quantity*.
 
 # Model
-
+Based on the results of 
 
 
 # Prediction
