@@ -24,15 +24,21 @@ One might ask why we bother to consider electoral predictions at all instead of 
 
 First we can consider the predictive ability of the national popular vote polling. I use **month-by-month polling data** (from February to November) in each election year from 1968 to 2016. For each month I consider the ***difference*** in the *two party vote share for Republicans suggested by the polled support rates* for the two major parties and the *actual portion of the two party vote share* that went to Republicans in that election year. (The choice to show the difference for Republican instead of Democrats has no consequences because we assume that all votes and electoral votes must go to one of these two parties.)
 
-(INSERT PLOT HERE)
+![image of national poll accuracy by month](../figures/national_poll_accuracy.png)
 
 We can similarly consider the predictive ability of the state polls by plotting the ***difference*** between the *electoral college result suggested by which candidate is leading in polls each state* and *the actual electoral college result* from that election year. (As with the national polls, I consider this difference for Republicans but this is simply the additive inverse of what it would be for Democrats.) 
+
+![image of state poll accuracy by month](../figures/state_poll_accuracy.png)
 
 # Analysis of Plots
 We observe that **when the election is far away, national polling gives a better indication** for who will win the election and **when the election is close, the state polling gives a better indication** of who will win the election. Over time the national polling data converges on the correct two-party vote, but it does not converge very much. In contrast, long before the election, the state polling does not give a very good prediction of the result, but it converges dramatically as the election approaches. This result is likely the result of the distortion caused by the electoral college system. Since a candidate can lose the election with a higher two-party vote share, *the* ***location*** *of the votes they earn is highly relevant in addition to the quantity*.
 
 # Model
-Based on the results of 
+Based on the results of our analysis, we see that we should increase the weighting we give to state polls as we get closer to the election. From this concept we can create the predictive model:
+
+***Electoral Prediction = (10 - months until election)/10 * State Poll Prediction+ (months until election)/10 * National Poll Prediction***
+
+This 
 
 
 # Prediction
