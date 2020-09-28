@@ -12,7 +12,7 @@ Pollsters do not take polls in every state in every month of every election year
 Both of these choices were made with the idea that -in the absence of more recent data- using the **most recent data is the best available proxy**.
 
 # Electoral Votes vs Popular Votes
-When considering the result of a US presidential election, we can consider either the electoral vote counts resulting form the way states contribute to the overall result or we can consider the two party vote percentage acquired by each of the major parties. While two party vote percentage is simpler to work with, the electoral votes is what ultimately determined the winner of the election.
+When considering the result of a US presidential election, we can consider either the electoral vote counts resulting from the way states contribute to the overall result or we can consider the two party vote percentage acquired by each of the major parties. While two party vote percentage is simpler to work with, the electoral votes is what ultimately determined the winner of the election.
 
 To account in part for the impact of the electoral college in distorting the election results, I *normalize* the difference in electoral vote count as if the total number of electoral votes is 100. This makes the plots more reasonable to compare because two party popular vote share is constrained so that the total percentage of votes is 100%.
 
@@ -31,7 +31,7 @@ We can similarly consider the predictive ability of the state polls by plotting 
 ![image of state poll accuracy by month](../figures/state_poll_accuracy.png)
 
 # Analysis of Plots
-We observe that **when the election is far away, national polling gives a better indication** for who will win the election and **when the election is close, the state polling gives a better indication** of who will win the election. Over time the national polling data converges on the correct two-party vote, but it does not converge very much. In contrast, long before the election, the state polling does not give a very good prediction of the result, but it converges dramatically as the election approaches. This result is likely the result of the distortion caused by the electoral college system. Since a candidate can lose the election with a higher two-party vote share, *the* ***location*** *of the votes they earn is highly relevant in addition to the quantity*.
+We observe that **when the election is far away, national polling gives a better indication** for who will win the election and **when the election is close, the state polling gives a better indication** of who will win the election. Over time the national polling data moves towards on the correct two-party vote, but it does not converge very much. In contrast, long before the election, the state polling does not give a very good prediction of the result, but it converges dramatically as the election approaches. This result is likely the result of the distortion caused by the electoral college system. Since a candidate can lose the election with a higher two-party vote share, *the* ***location*** *of the votes they earn is highly relevant in addition to the quantity*.
 
 # Model
 Based on the results of our analysis, we see that we should increase the weighting we give to state polls as we get closer to the election. From this concept we can create the predictive model:
@@ -40,9 +40,12 @@ Based on the results of our analysis, we see that we should increase the weighti
 
 In this equation, "State Poll Prediction" indicates the number of electoral votes predicted by the state polling data for a given party. (This number is out of 538, not normalized to 100 because we will normalize the national popular vote to 538.) "National Poll Prediction" is the number the number of electoral votes a candidate would get if their two party vote share in the national poll converted proportionally to the 538 electoral votes.
 
-This scheme means that while data about the election that would give us precision in our prediction (namely state polling) is unavailable, we use broader information about the electorate to qualify our expectation and as thorough state polling developing we reduce our reliance on national polling (which is not especially predictive on a margin necessary to predict the election).
+This scheme means that while data about the election that would give us precision in our prediction (namely state polling) is unavailable, we use broader information about the electorate to qualify our expectation and, as thorough state polling develops, we reduce our reliance on national polling (which is not especially predictive on a margin necessary to predict the election).
 
 # Prediction
 
-I acquired recent polling data (as of 9/27/2020) from [FiveThirtyEight](https://projects.fivethirtyeight.com/polls/president-general/national/). ***Based on this data, my model predicts that Republican candidate Donald Trump will earn 199 electoral votes.***
+I acquired recent polling data (as of 9/27/2020) from [FiveThirtyEight](https://projects.fivethirtyeight.com/polls/president-general/national/). 
+
+***Based on this data, my model predicts that Republican candidate Donald Trump will earn 199 electoral votes.***
+
 This would mean that **Democratic candidate Joe Biden would win the presidency**.
