@@ -12,13 +12,13 @@ library(knitr)
 library(stargazer)
 
 ## set working directory here
-setwd("~")
+setwd("~/gov1347/election_analytics_blog/scripts")
 
 ####----------------------------------------------------------#
 #### The incumbency advantage: simple descriptive statistics ####
 ####----------------------------------------------------------#
 
-popvote_df <- read_csv("popvote_1948-2016.csv")
+popvote_df <- read_csv("../data/popvote_1948-2016.csv")
 
 # How many post-war elections where incumbent president won?
 
@@ -58,7 +58,7 @@ table(`prev.admin` = popvote_df$prev_admin[popvote_df$winner]) %>%
 #### - federal grant ####
 ####----------------------------------------------------------#
 
-fedgrants_state_df <- read_csv("fedgrants_bystate_1988-2008.csv")
+fedgrants_state_df <- read_csv("../data/fedgrants_bystate_1988-2008.csv")
 
 # What strategy do presidents pursue?
 
@@ -92,7 +92,7 @@ fedgrants_state_df %>%
 
 ## the effect of federal grant (at the county level)
 
-fedgrants_county_df <- read_csv("fedgrants_bycounty_1988-2008.csv")
+fedgrants_county_df <- read_csv("../data/fedgrants_bycounty_1988-2008.csv")
 
 # McCain, PA (2008)
 
