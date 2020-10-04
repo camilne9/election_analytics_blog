@@ -29,6 +29,7 @@ full_popvote <- pop_vote %>%
   right_join(grant_increase, by = c('state_abb', 'year')) %>% 
   mutate(swing_state = str_detect(state_year_type, "swing")) %>% 
   replace_na(list(swing_state = FALSE)) %>% 
+  filter(party == 'republican') %>% 
   group_by(state) %>% 
   mutate(prev_dem_vote = lag(D_pv2p, order_by = year)) %>% 
   mutate(prev_rep_vote = lag(R_pv2p, order_by = year)) %>% 
@@ -38,7 +39,26 @@ selected_data <- full_popvote %>%
   mutate(dem_increase = D_pv2p - prev_dem_vote) %>% 
   mutate(rep_increase = R_pv2p - prev_rep_vote) %>% 
   select(year, party, incumbent, incumbent_party, state, 
-         R_pv2p, D_pv2p, grant_increase, swing_state) %>% 
-  filter(year > 1984)
+         grant_increase, swing_state, rep_increase, dem_increase) %>% 
+  filter(year > 1984) %>% 
+  mutate(incumbent_increase = incumbent_party*rep_increase + (1-incumbent_party)*dem_increase)
 
+selected_data %>% 
+  ggplot(aes(x = grant_increase, y = incumbent_increase))+
+  geom_point()+
+  geom_smooth(method = 'lm', se = 0)
 
+selected_data %>% 
+  ggplot(aes(x = grant_increase, y = incumbent_increase, color = incumbent))+
+  geom_point()+
+  geom_smooth(method = 'lm', se = 0)
+
+selected_data %>% 
+  ggplot(aes(x = grant_increase, y = incumbent_increase, color = incumbent_party))+
+  geom_point()+
+  geom_smooth(method = 'lm', se = 0)
+
+selected_data %>% 
+  ggplot(aes(x = grant_increase, y = incumbent_increase, color = swing_state))+
+  geom_point()+
+  geom_smooth(method = 'lm', se = 0)
