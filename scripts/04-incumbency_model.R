@@ -93,7 +93,7 @@ selected_data %>%
        x = "Increase in Federal Grants to the State \n (in Millions of US Dollars)",
        y = "Increase in Vote Share of Incumbent Party")+
   theme_solarized_2()+
-  scale_colour_manual(values = c("darkblue", "red"))+
+  scale_colour_manual(values = c("darkgreen", "purple"))+
   theme(legend.title = element_blank())
 
 ggsave("../figures/grants_swing.png", height = 6, width = 8)
