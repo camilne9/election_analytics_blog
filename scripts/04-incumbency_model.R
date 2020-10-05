@@ -80,7 +80,7 @@ selected_data %>%
   geom_smooth(method = 'lm', se = 0)+
   labs(title = "Incumbent Party Vote Share Growth by Federal Grant Growth",
        subtitle = "For each state from 1988 to 2008",
-       x = "Increase in Federal Grants to the State",
+       x = "Increase in Federal Grants to the State \n (in Millions of US Dollars)",
        y = "Increase in Vote Share of Incumbent Party")+
   theme_solarized_2()
 
@@ -99,7 +99,7 @@ selected_data %>%
   geom_smooth(method = 'lm', se = 0)+
   labs(title = "Incumbent Party Vote Share Growth by Federal Grant Growth",
        subtitle = "For each state from 1988 to 2008, by Incumbent Party",
-       x = "Increase in Federal Grants to the State",
+       x = "Increase in Federal Grants to the State  \n (in Millions of US Dollars)",
        y = "Increase in Vote Share of Incumbent Party")+
   theme_solarized_2()+
   scale_colour_manual(values = c("darkblue", "red"))+
@@ -115,7 +115,7 @@ selected_data %>%
   geom_smooth(method = 'lm', se = 0)+
   labs(title = "Incumbent Party Vote Share Growth by Federal Grant Growth",
        subtitle = "For each state from 1988 to 2008, by Swing State Status",
-       x = "Increase in Federal Grants to the State",
+       x = "Increase in Federal Grants to the State \n (in Millions of US Dollars)",
        y = "Increase in Vote Share of Incumbent Party")+
   theme_solarized_2()+
   scale_colour_manual(values = c("darkblue", "red"))+
