@@ -46,34 +46,12 @@ selected_data <- full_popvote %>%
          grant_increase, swing_state, rep_increase, dem_increase) %>% 
   filter(year > 1984) %>% 
   mutate(incumbent_increase = incumbent_party*rep_increase + (1-incumbent_party)*dem_increase)
-# =========================
-# =========================
-# The below code is still unacceptable 
-incumbent_case <- pop_vote %>% 
-  left_join(state_vote, by = c("year")) %>% 
-  mutate(state_abb = setNames(state.abb, state.name)[state]) %>% 
-  right_join(grant_increase, by = c('state_abb', 'year')) %>% 
-  mutate(swing_state = str_detect(state_year_type, "swing")) %>% 
-  replace_na(list(swing_state = FALSE)) %>% 
-  filter(incumbent) %>% 
-  group_by(state) %>% 
-  mutate(prev_dem_vote = lag(D_pv2p, order_by = year)) %>% 
-  mutate(prev_rep_vote = lag(R_pv2p, order_by = year)) %>% 
-  ungroup()
 
-incumbent_data <- incumbent_case %>% 
-  mutate(dem_increase = D_pv2p - prev_dem_vote) %>% 
-  mutate(rep_increase = R_pv2p - prev_rep_vote) %>% 
-  select(year, party, incumbent, incumbent_party, state, 
-         grant_increase, swing_state, rep_increase, dem_increase) %>% 
-  filter(year > 1984) %>% 
-  mutate(incumbent_increase = str_detect(party, "republican")*rep_increase + 
-           (1-str_detect(party, "republican"))*dem_increase)
-# =========================
-# =========================
 
 # I make plots of the overall trend, the trend broken down by swing and non-swing,
 # and the trend broken down by party.
+
+# Here's the plot for the overall trend.
 selected_data %>% 
   ggplot(aes(x = grant_increase, y = incumbent_increase))+
   geom_point()+
@@ -84,13 +62,9 @@ selected_data %>%
        y = "Increase in Vote Share of Incumbent Party")+
   theme_solarized_2()
 
-ggsave("../figures/grants_vs_votes.png", height = 4, width = 8)
+ggsave("../figures/grants_vs_votes.png", height = 6, width = 8)
 
-# incumbent_data %>% 
-#   ggplot(aes(x = grant_increase, y = incumbent_increase, color = party))+
-#   geom_point()+
-#   geom_smooth(method = 'lm', se = 0)
-
+# Here's the plot broken down by party.
 selected_data %>% 
   mutate(incumbent_party = str_replace(incumbent_party, "TRUE", "Republican")) %>% 
   mutate(incumbent_party = str_replace(incumbent_party, "FALSE", "Democrat")) %>% 
@@ -105,8 +79,9 @@ selected_data %>%
   scale_colour_manual(values = c("darkblue", "red"))+
   theme(legend.title = element_blank())
 
-ggsave("../figures/grants_party.png", height = 4, width = 8)
+ggsave("../figures/grants_party.png", height = 6, width = 8)
 
+# Here's the plot broken down by swing and non-swing states.
 selected_data %>% 
   mutate(swing_state = str_replace(swing_state, "TRUE", "Swing State")) %>% 
   mutate(swing_state = str_replace(swing_state, "FALSE", "Non-Swing State")) %>% 
@@ -121,9 +96,9 @@ selected_data %>%
   scale_colour_manual(values = c("darkblue", "red"))+
   theme(legend.title = element_blank())
 
-ggsave("../figures/grants_swing.png", height = 4, width = 8)
+ggsave("../figures/grants_swing.png", height = 6, width = 8)
 
-# Now I explicitly find the linear regression of each of the relevant cases
+# Now I explicitly find the linear regression of each of the relevant cases.
 swing_state <- selected_data %>% 
   filter(swing_state)
 lm_swing <- lm(incumbent_increase ~ grant_increase, data = swing_state)
@@ -144,12 +119,5 @@ democrat_incumbent <- selected_data %>%
 lm_democrat_incumbent <- lm(incumbent_increase ~ grant_increase, data = democrat_incumbent)
 summary(lm_democrat_incumbent)
 
-# reelection_republican <- incumbent_data %>% 
-#   filter(party == "republican")
-# lm_reelection_republican <- lm(incumbent_increase ~ grant_increase, data = reelection_republican)
-# summary(lm_reelection_republican)
-# 
-# reelection_democrat <- incumbent_data %>% 
-#   filter(party == "democrat")
-# lm_reelection_democrat <- lm(incumbent_increase ~ grant_increase, data = reelection_democrat)
-# summary(lm_reelection_democrat)
+# Observing that the r-squareds for these regressions are very low, we conclude that it 
+# would be unreasonable to make predictions based on these regression lines.
