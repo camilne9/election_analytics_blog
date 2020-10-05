@@ -36,10 +36,9 @@ Finally, in the third figure we see that the same increase in federal funding re
 
 For all of the regression lines, the fit to the data is exceptionally weak. This means that there is a high probability for data to deviate from this trend. In other words, **the relationship does not have a lot of predictive power**. Also, the data used to generate these trends only spans from 1988 through 2008 which is a fairly small sample, making it harder to extrapolate with confidence. Additionally, with the large amounts of federal spending due to the coronavirus, it is possible that **the virus supplies a confounding variable** that will limit the extent to which the incumbent is rewarded for the allocation of federal funds to the states.
 
+Furthermore, it would have been useful to see if there were differences between the trends of the parties when we looked exclusively at *incumbent candidates* and not just at *incumbent parties*. However, due to the limited size of the data set, there would only be one Democratic incumbent and 2 Republican incumbents. These **sample sizes would have been too small to be insightful** because it would not have been possible to separate the effect of the party from the effect of the particular candidates as individuals.
+
 In summary, any prediction made using these trends cannot be expected to forecast the election with great accuracy.
 
-# Prediction
-Although we do not have a great basis for making a prediction from these trends, we can consider what result we would expect given these 
-
 # Conclusion
-In conclusion, since change in federal spending is not strongly correlated with change in two-party popular vote share, it is not very reasonable to use federal spending as a predictor for the 2020 US presidential election. As such, the prediction I made last week [using polling data](polling.md) remains a much more reasonable basis for predicting the election.
+In conclusion, since ***change in federal spending is not strongly correlated with change in two-party popular vote share***, it is not very reasonable to use federal spending as a predictor for the 2020 US presidential election. As such, the prediction I made last week [using polling data](polling.md) remains a much more reasonable basis for predicting the election.
