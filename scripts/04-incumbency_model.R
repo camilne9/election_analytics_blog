@@ -77,7 +77,14 @@ incumbent_data <- incumbent_case %>%
 selected_data %>% 
   ggplot(aes(x = grant_increase, y = incumbent_increase))+
   geom_point()+
-  geom_smooth(method = 'lm', se = 0)
+  geom_smooth(method = 'lm', se = 0)+
+  labs(title = "Incumbent Party Vote Share Growth by Federal Grant Growth",
+       subtitle = "For each state from 1988 to 2008",
+       x = "Increase in Federal Grants to the State",
+       y = "Increase in Vote Share of Incumbent Party")+
+  theme_solarized_2()
+
+ggsave("../figures/grants_vs_votes.png", height = 4, width = 8)
 
 # incumbent_data %>% 
 #   ggplot(aes(x = grant_increase, y = incumbent_increase, color = party))+
@@ -85,14 +92,36 @@ selected_data %>%
 #   geom_smooth(method = 'lm', se = 0)
 
 selected_data %>% 
+  mutate(incumbent_party = str_replace(incumbent_party, "TRUE", "Republican")) %>% 
+  mutate(incumbent_party = str_replace(incumbent_party, "FALSE", "Democrat")) %>% 
   ggplot(aes(x = grant_increase, y = incumbent_increase, color = incumbent_party))+
   geom_point()+
-  geom_smooth(method = 'lm', se = 0)
+  geom_smooth(method = 'lm', se = 0)+
+  labs(title = "Incumbent Party Vote Share Growth by Federal Grant Growth",
+       subtitle = "For each state from 1988 to 2008, by Incumbent Party",
+       x = "Increase in Federal Grants to the State",
+       y = "Increase in Vote Share of Incumbent Party")+
+  theme_solarized_2()+
+  scale_colour_manual(values = c("darkblue", "red"))+
+  theme(legend.title = element_blank())
+
+ggsave("../figures/grants_party.png", height = 4, width = 8)
 
 selected_data %>% 
+  mutate(swing_state = str_replace(swing_state, "TRUE", "Swing State")) %>% 
+  mutate(swing_state = str_replace(swing_state, "FALSE", "Non-Swing State")) %>% 
   ggplot(aes(x = grant_increase, y = incumbent_increase, color = swing_state))+
   geom_point()+
-  geom_smooth(method = 'lm', se = 0)
+  geom_smooth(method = 'lm', se = 0)+
+  labs(title = "Incumbent Party Vote Share Growth by Federal Grant Growth",
+       subtitle = "For each state from 1988 to 2008, by Swing State Status",
+       x = "Increase in Federal Grants to the State",
+       y = "Increase in Vote Share of Incumbent Party")+
+  theme_solarized_2()+
+  scale_colour_manual(values = c("darkblue", "red"))+
+  theme(legend.title = element_blank())
+
+ggsave("../figures/grants_swing.png", height = 4, width = 8)
 
 # Now I explicitly find the linear regression of each of the relevant cases
 swing_state <- selected_data %>% 
