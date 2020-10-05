@@ -11,4 +11,4 @@ In this post I consider how RDI growth in the third quarter of an election year 
 In this post I consider whether state level or national level polling is a better predictor for the US Presidential election by using state and national polling data for elections from 1972 to 2016. I then use state and national polling data to make a prediction for the 2020 presidential election. (9/27/2020)
 
 ## [Incumbency](posts/incumbency.md)
-In this post I consider the effect of incumbency on US Presidential election (10/4/2020)
+In this post I consider the effect of incumbency on US Presidential election. Specifically, I look at how increases in federal spending by state between election cycles affect the two-party popular vote results in those states.  (10/4/2020)
