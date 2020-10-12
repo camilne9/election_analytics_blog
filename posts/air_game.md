@@ -14,17 +14,20 @@ Based on constraints on available data about money spent on advertising, I only 
 
 # Historical Trends in Spending 
 
+First we can consider where campaigns spend their money. Below I plot the average amount of September spending by each party in each category of state competitiveness.
 
 
 ![image of average absolute spending](../figures/absolute_spending.png)
 
-## Analysis of Plots
+## Analysis of Plot
+In this plot we observe that in election from 2000-2012, Democrats have spent more money than Republicans in all three categories of states. We also observe that campaigns spend more money in battleground states. This is not surprising when we consider that these are the states in which they have the best opportunity to influence voters in a way that influences the ultimate election result.
 
-
+We can also consider how this plot looks if we adjust for the Democrats absolute spending advange by considering the *proportion* of campaign spending that is allocated to each category of state.
 
 ![image of average proportional spending](../figures/normalized_spending.png)
 
 ## Analysis of Plot
+
 
 
 # Using Historical Data to Predict 2020
