@@ -57,10 +57,10 @@ My personal impression of this prediction is that it is, for the most part, reas
 
 # Conclusion
 Using data on advertising spending in September, I generate the following prediction for the 2020 electoral result:
-| Candidate                | Electoral Votes
-|--------------------------|----------------
-| Trump Electoral Votes    | 208  
-|--------------------------|----------------
-| Biden Electoral Votes    | 330  
-  
+
+| Candidate             | Electoral Votes 
+|-----------------------|-----------------
+| Trump                 | 208             
+| Biden                 | 330             
+
 Thus, ***my prediction gives that Biden will win the 2020 Presidential Election***.
