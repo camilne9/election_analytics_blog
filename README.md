@@ -14,4 +14,4 @@ In this post I consider whether state level or national level polling is a bette
 In this post I consider the effect of incumbency on US Presidential election. Specifically, I look at how increases in federal spending by state between election cycles affect the two-party popular vote results in those states.  (10/4/2020)
 
 ## [The Air Game](posts/air_game.md)
-This post explores the effects of campaign spending on advertising on the US Presidential election. In particular, I use historical trend in how spending differences between parties in swing states affects the result in those states and I use that to make a prediction about the 2020 election.  (10/11/2020)
+This post explores the effects of campaign spending on advertising on the US Presidential election. In particular, I use historical trends in how spending differences between parties in battleground states affects the result in those states and I use that to make a prediction about the 2020 election.  (10/11/2020)
