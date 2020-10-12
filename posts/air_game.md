@@ -2,13 +2,13 @@
 
 10/11/2020
 
-In this post I explore the effect of advertising on the US Presidential Election. I will use data on **money spent on advertising** by presidential candidates to predict **two party vote share** for the major party in battleground states and I will use those results to make a ***prediction about the electoral result in 2020***.
+In this post I explore the effect of advertising on the US Presidential Election. I will use data on **money spent on advertising** by presidential candidates to predict **two party vote share** for the major parties in battleground states and I will use those results to make a ***prediction about the electoral result in 2020***.
 
 # Relevant Considerations
 
 For the sake of this exploration I confine myself to money spent on advertising in the month of **September**. This is because this is advertising data closest to the election that I have access to. It has been argued that the effects of advertising are significant, but decay rapidly over time. Thus, *restricting myself to only the advertising closest to the election* (for which I have data) should be a fairly reasonable choice.
 
-In a given election, not every state can reasonably be considered to be competitive. We might expect that spending in states that are not competitive will not have a significant impact on the result in those states. For this reason, **I separately consider the effects of advertising on** ***safe democrat states, safe republican states, and battleground states***. I create these categories by taking all states deemed "swing" states in the federal funding data set to be battleground states, and any state decided by less than a 5 point two-party popular vote margin to be a battleground state. For non-battleground states, I categorize "safe democrat" and "safe republican" by retroactively *observing the winner* and taking that result to have been "safe".
+In a given election, not every state can reasonably be considered to be competitive. We might expect that spending in states that are not competitive will not have a significant impact on the result in those states. For this reason, **I separately consider the effects of advertising on** ***safe democrat states, safe republican states, and battleground states***. I create these categories by taking all states deemed "swing" states in the federal funding data to be battleground states, and any state decided by less than a 5 point two-party popular vote margin to be a battleground state. For non-battleground states, I categorize "safe democrat" and "safe republican" by retroactively *observing the winner* and taking that result to have been "safe".
 
 Based on constraints on available data about money spent on advertising, I only consider historical data from the **elections from 2000 to 2012**. This is unfortunately a small data set and therefore limits the predictive power of my analysis.
 
@@ -57,10 +57,10 @@ My personal impression of this prediction is that it is, for the most part, reas
 
 # Conclusion
 Using data on advertising spending in September, I generate the following prediction for the 2020 electoral result:
-
-|--------------------------|------
+| Candidate                | Electoral Votes
+|--------------------------|----------------
 | Trump Electoral Votes    | 208  
-|--------------------------|------
+|--------------------------|----------------
 | Biden Electoral Votes    | 330  
   
 Thus, ***my prediction gives that Biden will win the 2020 Presidential Election***.
