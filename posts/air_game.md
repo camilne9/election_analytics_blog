@@ -36,9 +36,11 @@ We can also consider how this plot looks if we adjust for the Democrats absolute
 
 ![image of trend in popular vote by spending difference](../figures/republican_spending_advantage.png)
 
-For the safe states, we see that the data varies drastically in terms of two party vote share for similar differences in advertising spending. This tells us that it is not useful to 
+For the safe states, we see that the data varies drastically in terms of two party vote share for similar differences in advertising spending. This tells us that it is not useful to consider a regression line in these categories. This is not consequential for our predictions because we can already reasonably assume which candidate wins the state so it is unnecessary to know a point estimate for the two party vote share. 
 
-We observe that when Republicans and Democrats match each others' spending in a battleground state, the Republican tends to do slightly better. This seems to counterbalance the fact that Democrats tend to outspend Republicans in the elections since 2000.
+In battleground states
+
+We also observe, however, that when Republicans and Democrats match each others' spending in a battleground state, the Republican tends to do slightly better. This seems to counterbalance the fact that Democrats tend to outspend Republicans in the elections since 2000.
 
 # Prediction
 
@@ -49,6 +51,10 @@ For 2020, I have data on the number of airings by each candidate in each state i
 
 
 # Conclusion
+Using data on advertising spending in September, I generate the following prediction for the 2020 electoral result:
 
-  Trump: 208 Electoral Votes
-  Biden: 330: Electoral Votes
+| Trump Electoral Votes    | 208  
+|--------------------------|------
+| Biden Electoral Votes    | 330  
+  
+Thus, my prediction gives that Biden will win the 2020 Presidential Election.
