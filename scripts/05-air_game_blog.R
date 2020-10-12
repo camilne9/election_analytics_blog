@@ -55,6 +55,7 @@ rep_edge <- state_vote %>%
   filter(!is.na(state)) %>% 
   filter(!is.na(lean))
 
+# I get the mean and standard deviation for the bar plots I will make.
 spending_breakdown <- rep_edge %>% 
   group_by(lean) %>%
   summarize(Republicans = mean(republican), 
@@ -161,8 +162,7 @@ prediction %>%
   group_by(trump_predicted_winner) %>% 
   summarize(votes = sum(electors))
 
-## shapefile of states from `usmap` library
-## note: `usmap` merges this internally, but other packages may not!
+# Set up for making a map plot
 states_map <- usmap::us_map()
 unique(states_map$abbr)
 
