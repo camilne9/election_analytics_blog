@@ -5,6 +5,7 @@ library(ggthemes)
 library(knitr)
 library(stargazer)
 library(janitor)
+library(usmap)
 
 setwd("~/gov1347/election_analytics_blog/scripts")
 
@@ -16,6 +17,7 @@ fedgrants_state_df <- read_csv("../data/fedgrants_bystate_1988-2008.csv")
 ad_campaigns <- read_csv("../data/ad_campaigns_2000-2012.csv")
 ad_creative <- read_csv("../data/ad_creative_2000-2012.csv")
 ads_2020 <- read_csv("../data/ads_2020.csv")
+battleground <- read_csv("../data/battleground.csv")
 
 # First I extract swing state data from the grants dataset
 swing_states <- fedgrants_state_df %>% 
@@ -124,16 +126,53 @@ rep_edge %>%
        subtitle = "By Competetiveness of State",
        x = "Republican Spending Advantage (Millions of US Dollars)",
        y = "Republican Two Party Vote Share (%)")+
-  scale_color_manual(values = c("purple", "darkblue", "red"))+
+  scale_color_manual(values = c("purple", "blue", "red"))+
   theme_minimal()+
   theme(legend.title = element_blank())
 
 ggsave("../figures/republican_spending_advantage.png", height = 6, width = 8)
 
+# I find the regression line for the battleground states
 battleground_data <- rep_edge %>% 
   filter(lean == "Battleground States") %>% 
   mutate(rep_funding_edge = rep_funding_edge)
 
 lm_battleground <- lm(R_pv2p ~ rep_funding_edge, data = battleground_data)
 summary(lm_battleground)
+
+# I clean the 2020 battleground state data 
+battleground <- battleground %>% 
+  mutate(state = setNames(state.abb, state.name)[state]) %>% 
+  mutate(state = ifelse(is.na(state), "DC", state))
+
+# I make electoral predictions based on regression line
+prediction <- ads_2020 %>% 
+  filter(period_startdate == "2020-09-05") %>% 
+  mutate(rep_advantage = total_cost*(trump_airings-biden_airings)/total_airings) %>% 
+  select(state, rep_advantage) %>% 
+  right_join(battleground, by = 'state') %>% 
+  mutate(prediction = ifelse(lean == "s", 
+                             5.054e+01+7.080e-07*rep_advantage, 
+                             100*str_detect(lean, "r"))) %>% 
+  mutate(trump_predicted_winner = (prediction >= 50))
+
+# I check that the prediction looks reasonable
+prediction %>% 
+  group_by(trump_predicted_winner) %>% 
+  summarize(votes = sum(electors))
+
+## shapefile of states from `usmap` library
+## note: `usmap` merges this internally, but other packages may not!
+states_map <- usmap::us_map()
+unique(states_map$abbr)
+
+# I plot predictions of the final electoral map
+plot_usmap(data = prediction, regions = "states", values = "trump_predicted_winner") + 
+  scale_fill_manual(values = c("blue", "red"), name = "state winner") +
+  theme_void()+
+  theme(legend.position = 'None')+
+  labs(title = "Prediction 2020 Electoral Map",
+       subtitle = "Based on September Advertising Spending")
+
+ggsave("../figures/prediction_by_spending.png", height = 6, width = 8)
   
