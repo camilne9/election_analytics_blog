@@ -156,3 +156,15 @@ month_left <- 1
 
 # Finally we make a prediction for Trump's electoral vote share:
 prediction <- round((10-month_left)/10*state_polls + month_left/10*national_polls)
+
+
+# I also create a mpa showing the result of the election if the current state polling
+# perfectly predicts the result in every state
+plot_usmap(data = polls_10_17, regions = "state", values = "leading_party") + 
+  scale_fill_manual(values = c("blue", "red"), name = "state winner") +
+  theme_void()+
+  theme(legend.position = 'None')+
+  labs(title = "2020 Electoral Map Predicted by Polling",
+       subtitle = "Polling from 10/17")
+
+ggsave("../figures/polling_10_17.png", height = 6, width = 8)
