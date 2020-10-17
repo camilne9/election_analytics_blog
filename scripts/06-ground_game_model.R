@@ -26,15 +26,7 @@ local <- read_csv("../data/local.csv")
 turnout_demographics <- read_csv("../data/turnout_demographics.csv")
 polls_10_17 <- read_csv("../data/updated_polling_10-17.csv")
 
-
-state_vote %>% 
-  mutate(state = setNames(state.abb, state.name)[state]) %>% 
-  left_join(demographics, by = c('state', 'year')) %>% 
-  # select(state, year, D_pv2p, Black) %>% 
-  # filter(!is.na(White)) %>% 
-  ggplot(aes(x = Black, y = D_pv2p))+
-  geom_point()
-  
+# I clean the data and find turnout by state in election years for battleground states.  
 state_turnout <- turnout %>%
   filter(state != "United States") %>% 
   left_join(state_vote, group_by = c('state', 'year')) %>% 
@@ -44,23 +36,31 @@ state_turnout <- turnout %>%
   mutate(turnout_pct = as.numeric(sub("%", "", turnout_pct))) %>% 
   mutate(turnout_pct = ifelse(year == 2016, turnout_pct*100, turnout_pct))
 
+# Here I make a histogram of the Democrat wins by turnout percentage. We see that this
+# is not useful because we have no information about how common different turnout
+# percentages are. Thus, I will make a better plot.
 state_turnout %>% 
   # filter(dem_win) %>% 
   ggplot(aes(turnout_pct))+
   geom_histogram(bins = 40)
 
+# I generate a column plot that shows the win rate for Democrats for different 
+# turnout percentages
 state_turnout %>% 
-  filter(turnout_pct > 5) %>% 
-  filter(year == 2016)
-
-state_turnout %>% 
-  mutate(turnout_pct = 5*floor(turnout_pct/5)) %>% 
+  mutate(turnout_pct = 5*floor((turnout_pct+2.5)/5)) %>% 
   group_by(turnout_pct) %>% 
-  summarize(dem_win_rate = sum(dem_win)/n(), count = n(), wins = sum(dem_win)) %>% 
-  # mutate(turnout_window = toString(turnout_pct)+ "% to " + toString(turnout_pct +5) + "%")
-  ggplot(aes(x = turnout_pct, y = dem_win_rate))+
-  geom_col()
+  summarize(dem_win_rate = sum(dem_win)/n(), count = n(), wins = sum(dem_win)) %>%
+  ggplot(aes(x = turnout_pct, y = 100*dem_win_rate))+
+  geom_col()+
+  theme_economist()+
+  labs(x = "\n Voter Turnout (%)",
+       y = "Democratic Win Rate (%) \n",
+       title = "Democratic Win Rate by Voter Turnout",
+       subtitle = "\n For battleground states from 1980 to 2016")
 
+ggsave("../figures/turnout_vs_winrate.png", height = 6, width = 8)
+
+# We find the population in each election that fall in each demographic.
 state_demographics <- demographics %>%
   mutate(White = White*total/100) %>% 
   mutate(Black = Black*total/100) %>% 
@@ -76,6 +76,8 @@ state_demographics <- demographics %>%
   pivot_longer(cols = c('white', 'black', 'hispanic', 'other'), names_to = "demographic",
                values_to = "population")
 
+# We find the proportion of the voters that are white by using the population
+# and the voting turnout by demographic
 national_pv <- turnout_demographics %>% 
   mutate(demographic = str_replace(demographic, "Non-Hispanic White", 'white')) %>% 
   mutate(demographic = str_replace(demographic, "Non-Hispanic Black", 'black')) %>% 
@@ -96,20 +98,36 @@ national_pv %>%
   ggplot(aes(x = white_proportion, y = pv2p))+
   geom_point()+
   geom_smooth(method = "glm", 
-                          se = FALSE)
+                          se = FALSE)+
+  theme_minimal()+
+  labs(x = "\n Proportion of Voters that were Non-Hispanic Whites",
+       y = "Democratic Two Party Popular Vote Share \n",
+       title = "Democratic Vote Share by Demographics of Voters \n")
 
+ggsave("../figures/white_vote_1992.png", height = 6, width = 8)
+
+# Now we create an examine the regression line
 lm_national_pv <- lm(pv2p ~ white_proportion, data = national_pv)
 summary(lm_national_pv)
 
+# To check robustness, we remove the Clinton elections
 national_pv_recent <- national_pv %>% 
   filter(year >= 2000)
 
+# I re-plot the data with the resticted set of years
 national_pv_recent %>% 
   ggplot(aes(x = white_proportion, y = pv2p))+
   geom_point()+
   geom_smooth(method = "glm", 
-              se = FALSE)
-  
+              se = FALSE)+
+  theme_minimal()+
+  labs(x = "\n Proportion of Voters that were Non-Hispanic Whites",
+       y = "Democratic Two Party Popular Vote Share \n",
+       title = "Democratic Vote Share by Demographics of Voters \n")
+
+ggsave("../figures/white_vote_2000.png", height = 6, width = 8)
+
+# I consider the regression line for this case.
 lm_national_pv_recent <- lm(pv2p ~ white_proportion, data = national_pv_recent)
 summary(lm_national_pv_recent)
 
