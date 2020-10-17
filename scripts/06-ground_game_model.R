@@ -24,6 +24,7 @@ demographics <- read_csv("../data/demographic_1990-2018.csv")
 popvote_bycounty_2012_2016_WI <- read_csv("../data/popvote_bycounty_2012-2016_WI.csv")
 local <- read_csv("../data/local.csv")
 turnout_demographics <- read_csv("../data/turnout_demographics.csv")
+polls_10_17 <- read_csv("../data/updated_polling_10-17.csv")
 
 
 state_vote %>% 
@@ -111,3 +112,29 @@ national_pv_recent %>%
   
 lm_national_pv_recent <- lm(pv2p ~ white_proportion, data = national_pv_recent)
 summary(lm_national_pv_recent)
+
+
+# Now we will revisit my prediction from two weeks ago when I explored polling:
+# Recall my model:
+
+# model:
+# Electoral Prediction = 
+# (10 - months until election)/10 * State Poll Prediction + 
+# (months until election)/10 * National Poll Prediction
+
+state_polls <- polls_10_17 %>% 
+  filter(leading_party == "R") %>% 
+  summarize(sum(electors)) %>% 
+  deframe()
+
+# Current national polls have Republicans polled at 42.0% and Democrats polled at 52.4%
+# We convert to two party share and scale by 538 electoral votes:
+
+national_polls <- 42.0/(42.0+52.4)*538
+
+
+# Now we define our number of months left
+month_left <- 1
+
+# Finally we make a prediction for Trump's electoral vote share:
+prediction <- round((10-month_left)/10*state_polls + month_left/10*national_polls)
