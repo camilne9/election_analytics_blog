@@ -13,11 +13,15 @@ Let's consider how the voting turnout affects how often Democrats in a battlegro
 
 # Turnout by Demographic
 
+In addition to considering how many people vote (as a percentage of the voting eligible population), we can consider the effect of the composition of the voters in terms of their demographics impacts the result of the election. I will consider how **racial demographics of the voters** affects the national **two party vote share** in the election. 
+
 ![proportion of white voters vs democratic vote share since 1992](../figures/white_vote_1992.png)
 
-If we remove the elections in 1992 and 1996, however, we find the trend:
+This result is contrary to what we would have expected. Statistically, non-white voters have been found to vote more frequently for Democrats. We can attribute this counterintuitive result to the fact that the trend-line does not capture the data very well (r-squared of .08). We can see the way in which this line is not robust by removing the elections in 1992 and 1996 and finding the trend:
 
 ![proportion of white voters vs democratic vote share since 2000](../figures/white_vote_2000.png)
+
+Since we observe that the slope of the regression line is negative, we see a trend that matches what we would expect: **a greater share of non-white voters, tends to give a greater two-party vote share for Democrats**. This trend line has an r-squared value of .37, so in principle it captures the data better than the regression line in the previous plot. Having said that, since there are so **few data points available**, we would not expect this plot to have a lot of predictive power about other elections.
 
 
 # Prediction
@@ -32,14 +36,21 @@ Recall that my model was:
 
 I acquired recent polling data (as of 10/17/2020) from [FiveThirtyEight](https://projects.fivethirtyeight.com/polls/president-general/national/). The current state polling suggests that the electoral map will be:
 
-
+![map predicted by 10/17 state polling]("../figures/polling_10_17.png", height = 6, width = 8)
 
 However, the **national popular vote would suggest a closer result** since the current polls give: 
 
-
+| Candidate | National Popular Vote Polling |
+|-----------|-------------------------------|
+| Trump     | 42.0                          |
+| Biden     | 52.4                          |
 
 Using my model to put together these considerations I predict that the final electoral counts will be:
 
+| Candidate | Predicted Electoral Vote |
+|-----------|--------------------------|
+| Trump     | 188                      |
+| Biden     | 370                      |
 
 
 Therefore, **I predict that Biden will in the 2020 US Presidential Election.**
