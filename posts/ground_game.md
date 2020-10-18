@@ -13,15 +13,15 @@ Let's consider how the voting turnout affects how often Democrats win in a battl
 
 ![image of Democratic win rate by voter turnout](../figures/turnout_vs_winrate.png)
 
-Here we see that when the voter turnout gets higher, Democrats tend to win more consistently[^1]. This means that we expect that the Ground Game and "get out the vote" initiatives could be especially important to Democrats. With this in mind, it is not very surprising that in recent elections Democrats have had a much larger Ground Game presence than Republicans.
+Here we see that **when the voter turnout gets higher, Democrats tend to win more consistently**[^1]. This means that we expect that the Ground Game and "get out the vote" initiatives could be especially important to Democrats. With this in mind, it is not very surprising that in recent elections Democrats have had a much larger Ground Game presence than Republicans.
 
 # Turnout by Demographic
 
-In addition to considering how many people vote (as a percentage of the voting eligible population), we can consider whether the demographic composition of the voters impacts the result of the election. I will consider how **racial demographics of the voters** affects the national **two party vote share** in the election. 
+In addition to considering how many people vote (as a percentage of the voting eligible population), we can consider whether the demographic composition of the voters impacts the result of the election. I will consider how **racial demographics of the voters** affect the **national two party vote share** in the election. 
 
 ![proportion of white voters vs democratic vote share since 1992](../figures/white_vote_1992.png)
 
-This result is contrary to what we would have expected. The plot suggests tha t a higher proportion of white voters benefits Democrats. Statistically, non-white voters have been found to vote more frequently for Democrats. We can attribute the counter-intuitive result in the plot to the fact that the trend-line does not capture the data very well (r-squared of .08). We can see the way in which **this line is not robust** by removing the elections in 1992 and 1996 and finding the trend:
+This result is contrary to what we would have expected. The plot suggests that a higher proportion of white voters benefits Democrats. Statistically, non-white voters have been found to vote more frequently for Democrats. We can attribute the counter-intuitive result in the plot to the fact that the trend-line does not capture the data very well (r-squared of .08). We can see the way in which **this line is not robust** by removing the elections in 1992 and 1996 and finding the trend:
 
 ![proportion of white voters vs democratic vote share since 2000](../figures/white_vote_2000.png)
 
@@ -40,7 +40,7 @@ Recall that my model was:
 
 I acquired recent polling data (as of 10/17/2020) from [FiveThirtyEight](https://projects.fivethirtyeight.com/polls/president-general/national/). The current state polling suggests that the electoral map will be:
 
-![map predicted by 10/17 state polling]("../figures/polling_10_17.png")
+![map predicted by 10/17 state polling](../figures/polling_10_17.png)
 
 However, the **national popular vote would suggest a closer result** since the current polls give: 
 
