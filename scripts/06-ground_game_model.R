@@ -102,7 +102,8 @@ national_pv %>%
   theme_minimal()+
   labs(x = "\n Proportion of Voters that were Non-Hispanic Whites",
        y = "Democratic Two Party Popular Vote Share \n",
-       title = "Democratic Vote Share by Demographics of Voters \n")
+       title = "Democratic Vote Share by Demographics of Voters",
+       subtitle = "Elections from 1992 to 2016 \n")
 
 ggsave("../figures/white_vote_1992.png", height = 6, width = 8)
 
@@ -123,7 +124,8 @@ national_pv_recent %>%
   theme_minimal()+
   labs(x = "\n Proportion of Voters that were Non-Hispanic Whites",
        y = "Democratic Two Party Popular Vote Share \n",
-       title = "Democratic Vote Share by Demographics of Voters \n")
+       title = "Democratic Vote Share by Demographics of Voters",
+       subtitle = "Elections from 2000 to 2016 \n")
 
 ggsave("../figures/white_vote_2000.png", height = 6, width = 8)
 
