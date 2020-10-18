@@ -46,7 +46,7 @@ However, the **national popular vote would suggest a closer result** since the c
 
 | Candidate | National Popular Vote Polling |
 |-----------|-------------------------------|
-| Trump     | 42.0%                          |
+| Trump     | 41.8%                          |
 | Biden     | 52.4%                          |
 
 Using my model to put together these considerations I predict that the final electoral counts will be:

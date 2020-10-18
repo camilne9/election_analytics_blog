@@ -150,7 +150,7 @@ state_polls <- polls_10_17 %>%
 # Current national polls have Republicans polled at 42.0% and Democrats polled at 52.4%
 # We convert to two party share and scale by 538 electoral votes:
 
-national_polls <- 42.0/(42.0+52.4)*538
+national_polls <- 41.8/(41.8+52.4)*538
 
 
 # Now we define our number of months left
