@@ -54,7 +54,7 @@ Using my model to put together these considerations I predict that the final ele
 | Candidate | Predicted Electoral Vote |
 |-----------|--------------------------|
 | Trump     | 188                      |
-| Biden     | 370                      |
+| Biden     | 350                      |
 
 
 Therefore, ***I predict that Biden will in the 2020 US Presidential Election.***
