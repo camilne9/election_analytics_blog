@@ -13,7 +13,7 @@ Let's consider how the voting turnout affects how often Democrats win in a battl
 
 ![image of Democratic win rate by voter turnout](../figures/turnout_vs_winrate.png)
 
-Here we see that when the voter turnout gets higher, Democrats tend to win more consistently. This means that we expect that the Ground Game and "get out the vote" initiatives could be especially important to Democrats. With this in mind, it is not very surprising that in recent elections Democrats have committed to finding 
+Here we see that when the voter turnout gets higher, Democrats tend to win more consistently[^1]. This means that we expect that the Ground Game and "get out the vote" initiatives could be especially important to Democrats. With this in mind, it is not very surprising that in recent elections Democrats have had a much larger Ground Game presence than Republicans.
 
 # Turnout by Demographic
 
@@ -58,4 +58,6 @@ Using my model to put together these considerations I predict that the final ele
 
 
 Therefore, ***I predict that Biden will in the 2020 US Presidential Election.***
+
+[^1]: With that said, research by the [New York Times](https://www.nytimes.com/2019/07/15/upshot/2020-election-turnout-analysis.html) suggests that the Democratic advantage of a high voter turnout may not be so clear cut in the 2020 election due to demographic differences in different battleground states.
 
