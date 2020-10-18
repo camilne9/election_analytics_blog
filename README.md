@@ -17,4 +17,4 @@ In this post I consider the effect of incumbency on US Presidential election. Sp
 This post explores the effects of campaign spending on advertising on the US Presidential election. In particular, I use historical trends in how spending differences between parties in battleground states affects the result in those states and I use that to make a prediction about the 2020 election.  (10/11/2020)
 
 ## [The Ground Game](posts/ground_game.md)
-This post explores the effects of the ground game on the result of the presidential election.  (10/18/2020)
+In this post consider the effects of voter turnout and voter demographics on Democratic performance in elections. I also revisit my model based on polls to update my prediction on the 2020 presidential election.  (10/18/2020)
