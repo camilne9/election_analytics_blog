@@ -18,3 +18,6 @@ This post explores the effects of campaign spending on advertising on the US Pre
 
 ## [The Ground Game](posts/ground_game.md)
 In this post I consider the effects of voter turnout and voter demographics on Democratic performance in elections. I also revisit my model based on polls to update my prediction on the 2020 presidential election.  (10/18/2020)
+
+## [Shocks: Covid-19](posts/shocks.md)
+In general we can consider how unpredictable or unprecedented "shocks" influence an election. For the 2020 election cycle, Covid-19 presents a massive example of such a shock. I explore how Covid-19 effects the 2020 Presidential election. (10/25/2020)
