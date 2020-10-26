@@ -1,12 +1,12 @@
 ## Shocks: Covid-19
 
-In this post we will consider how "shocks" can influence an election. A shock is an unforeseen event that can has the potential to influence the election. For the 2020 election cycle, the clearest example of a "shock" is Covid-19. In this post I will consider how the deaths due to coronavirus could impact the result of the 2020 presidential election.
+In this post we will consider how "shocks" can influence an election. A shock is an unforeseen event that can has the potential to influence the election. For the 2020 election cycle, the clearest example of a "shock" is Covid-19. In this post I will consider how the **deaths per capita due to coronavirus** could impact the result of the 2020 presidential election.
 
 In my previous post about the [air game](air_game.md), I made a state by state prediction based on **ad spending by the two major parties in the month of September** and whether states are **battleground states**. I will consider how **this prediction can be modified** by adjusting for the effect of coronavirus. For convenience, here is the prediction that was made in that previous blog post:
 
 ![2020 electoral prediction from september spending](../figures/prediction_by_spending.png)
 
-In total I will consider 4 total possible new predictions depending on whether blame/credit for Covid-19 handling is given to the President or the Governor and whether success should be a binary variable or a spectrum.
+In total I will consider 4 total possible new predictions depending on whether blame/credit for Covid-19 handling is given to the **President or the Governor** and whether success should be a **binary variable or a spectrum**.
 
 # Predictability
 
@@ -34,19 +34,19 @@ Since Covid-19 is a shock, I am going to make the assumption that the **magnitud
 
 ## For Clarity:
 
-In the case of varying degree of success, the best and worst states will see these 5% changes and **intermediate states will see intermediate changes**. In the case of the binary success/failure metric, half of the states will be deemed successes and half will be deemed failures.
+In the case of varying degree of success, the best and worst states will see these 5% changes and **intermediate states will see intermediate changes**. In the case of the binary success/failure metric, **half of the states will be deemed successes and half will be deemed failures**.
 
-Success and failure in terms of Covid-19 is measured by deaths per capita in each state compared to the other states.
+Success and failure in terms of Covid-19 is measured by **deaths per capita** in each state compared to the other states.
 
 
 
 # Battleground Assumption
 
-As with my previous model, I am not going to adjust predictions about "safe states". Since "safe states" are by definition not likely to have an volatility in result, we can responable make the assumption that the effect of different variables in the election cycle, including shocks like **Covid-19, will not change the result in those states**. Thus, I will only update predictions in the battleground states: NH, TX, IA, MI, MN, WI, PA, FL, AZ, NV, NC, GA, and OH.
+As with my previous model, I am not going to adjust predictions about "safe states". Since "safe states" are by definition not likely to have any volatility in result, we can reasonably make the assumption that the effect of different variables in the election cycle, including shocks like **Covid-19, will not change the result in safe states**. Thus, I will only update predictions in the battleground states: NH, TX, IA, MI, MN, WI, PA, FL, AZ, NV, NC, GA, and OH.
 
 # Blaming the Governor
 
-The "Blaming the Governor" model is likely a reasonable assumption. People have shown that they are able to distinguish between the behavior of their Governor and of the President. This means that the effect on the presidential election will not be tied to the party of the state's governor.
+The "Blaming the Governor" model is likely a reasonable assumption. People have shown that they are able to **distinguish between the behavior of their Governor and of the President**. This means that the effect on the presidential election will not be tied to the party of the state's governor.
 
 In the case where half the states are successes and half are failures, my updated prediction is:
 
@@ -92,9 +92,9 @@ In the case where states are assigned scaled degrees of success and failure, my 
 
 Seeing the predictions in each of the four cases we can reflect on which map(s) seem the most plausible. 
 
-In 2016, Trump won most of the Midwest battleground states, but he did not win Minnesota. For this reason, the "Blame the governor" models seem to make sense because they show that **Biden would lose Midwest states other than MN more readily than MN** which is consistent with the 2016 election. Furthermore, predicting that Biden wins Texas (and Georgia in one case) is ambitious. Other models tend to claim that Texas voting for Biden is likely correlated with Biden winning many states that Trump won previously. For this reason, **the scaled "blame the governor" model seems more reasonable than the binary model**.
+In 2016, Trump won most of the Midwest battleground states, but he did not win Minnesota. For this reason, the "blame the governor" models seem to make sense because they show that **Biden would lose Midwest states other than MN more readily than MN** which is consistent with the 2016 election. Furthermore, predicting that Biden wins Texas (and Georgia in one case) is ambitious. Other modeling groups tend to claim that Texas voting for Biden is likely correlated with Biden winning many states that Trump won previously. For this reason, **the scaled "blame the governor" model seems more reasonable than the binary model**.
 
-For the "blame the president" models, it is odd that Biden would lose MN but win other Midwest states, especially Iowa which polling suggests is less likely to vote blue than other Midwest states. However, if we push back on the assumption that MN is more likely to vote for Biden than other Midwest states, the result of the **scaled "blame the president" model seems fairly reasonable** since it does not require Biden to win many states that Trump won previously.
+For the "blame the president" models, it is odd that Biden would lose MN but win other Midwest states, especially Iowa (which polling suggests is less likely to vote blue than other Midwest states). However, if we push back on the assumption that MN is more likely to vote for Biden than other Midwest states, the result of the **scaled "blame the president" model seems fairly reasonable** since it does not require Biden to win many states that Trump won previously.
 
 
 
