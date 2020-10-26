@@ -4,6 +4,8 @@ In this post we will consider how "shocks" can influence an election. A shock is
 
 In my previous post about the [air game](air_game.md), I made a state by state prediction based on **ad spending by the two major parties in the month of September** and whether states are **battleground states**. I will consider how **this prediction can be modified** by adjusting for the effect of coronavirus. For convenience, here is the prediction that was made in that previous blog post:
 
+![2020 electoral prediction from september spending](../figures/prediction_by_spending.png)
+
 In total I will consider 4 total possible new predictions depending on whether blame/credit for Covid-19 handling is given to the President or the Governor and whether success should be a binary variable or a spectrum.
 
 # Predictability
@@ -46,12 +48,21 @@ The "Blaming the Governor" model is likely a reasonable assumption. People have 
 
 In the case where half the states are successes and half are failures, my updated prediction is:
 
+!["flat governor" model prediction](../figures/prediction_flat_governor.png)
 
+| Candidate             | Electoral Votes 
+|-----------------------|-----------------
+| Trump                 | 208             
+| Biden                 | 330    
 
 In the case where states are assigned scaled degrees of success and failure, my updated prediction is:
 
+!["scaled governor" model prediction](../figures/prediction_scaled_governor.png)
 
-
+| Candidate             | Electoral Votes 
+|-----------------------|-----------------
+| Trump                 | 208             
+| Biden                 | 330    
 
 # Blaming the President
 
@@ -59,10 +70,21 @@ Since we are considering a Presidential election, it is fitting to attribute the
 
 In the case where half the states are successes and half are failures, my updated prediction is:
 
+!["flat president" model prediction](../figures/prediction_flat_president.png)
 
+| Candidate             | Electoral Votes 
+|-----------------------|-----------------
+| Trump                 | 208             
+| Biden                 | 330    
 
 In the case where states are assigned scaled degrees of success and failure, my updated prediction is:
 
+!["scaled president" model prediction](../figures/prediction_scaled_president.png)
+
+| Candidate             | Electoral Votes 
+|-----------------------|-----------------
+| Trump                 | 208             
+| Biden                 | 330    
 
 # Analysis and Reflection
 
