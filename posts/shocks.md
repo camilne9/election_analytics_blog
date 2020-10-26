@@ -2,8 +2,9 @@
 
 In this post we will consider how "shocks" can influence an election. A shock is an unforeseen event that can has the potential to influence the election. For the 2020 election cycle, the clearest example of a "shock" is Covid-19. In this post I will consider how the deaths due to coronavirus could impact the result of the 2020 presidential election.
 
-In my previous post about the [air game](air_game.md), I made a state by state prediction based on **ad spending by the two major parties in the month of September** and whether states are **battleground states**. I will consider how **this prediction can be modified** by adjusting for the effect of coronavirus.
+In my previous post about the [air game](air_game.md), I made a state by state prediction based on **ad spending by the two major parties in the month of September** and whether states are **battleground states**. I will consider how **this prediction can be modified** by adjusting for the effect of coronavirus. For convenience, here is the prediction that was made in that previous blog post:
 
+In total I will consider 4 total possible new predictions depending on whether blame/credit for Covid-19 handling is given to the President or the Governor and whether success should be a binary variable or a spectrum.
 
 # Predictability
 
@@ -25,9 +26,46 @@ I will also consider two possible answers to the third question, which I will di
 
 Data suggests that people tend to judge response to crisis on a **relative scale**. This means that we need to assess effectiveness of coronavirus response **relative to other states**. 
 
-With that lens, there are two ways we can interpret how people assess how well their state is doing in terms of dealing with Covid-19. 
+With that lens, there are two ways we can interpret how people assess how well their state is doing in terms of dealing with Covid-19. First, we can have a binary variable that **classifies each state as a "success" or a "failure"** with respect to the coronavirus based on the number of deaths per capita in the state. Second, we can have a variable that scales the effect of coronavirus with varying degrees of "success" and "failure". I will consider both of these cases.
+
+Since Covid-19 is a shock, I am going to make the assumption that the **magnitude of its impact is very large**. This means that in the case of the binary success/failure model, I'm assuming the change in two-party popular vote share is enough to change the result in a state and in the varying success/failure model I am assuming that "success" in handling Covid-19 gives a **benefit of 5% increase in two-party vote share** and that "failure" has a **cost of 5% decrease in two-party vote share**. 
+
+## For Clarity:
+
+In the case of varying degree of success, the best and worst states will see these 5% changes and **intermediate states will see intermediate changes**. In the case of the binary success/failure metric, half of the states will be deemed successes and half will be deemed failures.
+
+
+
+# Battleground Assumption
+
+As with my previous model, I am not going to adjust predictions about "safe states". Since "safe states" are by definition not likely to have an volatility in result, we can responable make the assumption that the effect of different variables in the election cycle, including shocks like Covid-19, will not change the result in those states. Thus, I will only update predictions in the battleground states: NH, TX, IA, MI, MN, WI, PA, FL, AZ, NV, NC, GA, and OH.
 
 # Blaming the Governor
+
+The "Blaming the Governor" model is likely a reasonable assumption. People have shown that they are able to distinguish between the behavior of their Governor and of the President. This means that the effect on the presidential election will not be tied to the party of the state's governor.
+
+In the case where half the states are successes and half are failures, my updated prediction is:
+
+
+
+In the case where states are assigned scaled degrees of success and failure, my updated prediction is:
+
+
+
+
+# Blaming the President
+
+Since we are considering a Presidential election, it is fitting to attribute the responsibility of Coronavirus to the president. This gives the following predctions.
+
+In the case where half the states are successes and half are failures, my updated prediction is:
+
+
+
+In the case where states are assigned scaled degrees of success and failure, my updated prediction is:
+
+
+# Analysis and Reflection
+
 
 
 
