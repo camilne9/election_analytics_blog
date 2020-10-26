@@ -1,5 +1,7 @@
 ## Shocks: Covid-19
 
+10/25/2020
+
 In this post we will consider how "shocks" can influence an election. A shock is an unforeseen event that can has the potential to influence the election. For the 2020 election cycle, the clearest example of a "shock" is Covid-19. In this post I will consider how the **deaths per capita due to coronavirus** could impact the result of the 2020 presidential election.
 
 In my previous post about the [air game](air_game.md), I made a state by state prediction based on **ad spending by the two major parties in the month of September** and whether states are **battleground states**. I will consider how **this prediction can be modified** by adjusting for the effect of coronavirus. For convenience, here is the prediction that was made in that previous blog post:
