@@ -43,10 +43,9 @@ fg_death_frac_clean <- tibble::rowid_to_column(death_frac, "rank") %>%
 
 # This assumes scaled success/failure and attributes responsibility to the governor
 # I call this "scaled governor" model
-# INCOMPLETE
 sg_death_frac_clean <- tibble::rowid_to_column(death_frac, "rank") %>% 
-  mutate(success = (rank>ceiling(n()/2))) %>% 
-  mutate(favors_trump = (str_detect(governor, 'r')+success != 1)) %>% 
+  mutate(favors_governor = 10*(rank-1)/50 - 5) %>% 
+  mutate(favors_trump = (2*str_detect(governor, 'r')-1)*favors_governor) %>% 
   select(-lean, -electors)
 
 # This assumes binary success/failure and attributes responsibility to the president
@@ -69,7 +68,9 @@ sp_death_frac_clean <- tibble::rowid_to_column(death_frac, "rank") %>%
 # ==========
 
 # Using an object from that other script, we can update the prediction. For "flat" models,
-# I simply reverse the 
+# I simply reverse the result if there is discrepency between the old prediction and the
+# effect of coronavirus. In "scaled" models, I shift the popular vote prediction by between
+# + and - 5% depending on the rank.
 
 # "flat governor" correction to the model based on rank
 fg_new_prediction <- fg_death_frac_clean %>% 
@@ -79,62 +80,62 @@ fg_new_prediction <- fg_death_frac_clean %>%
   mutate(trump_wins_state = (new_prediction > 0))
 
 # "scaled governor" correction to the model based on rank
+sg_new_prediction <- sg_death_frac_clean %>% 
+  left_join(prediction, by = 'state') %>% 
+  mutate(new_prediction = prediction + favors_trump) %>% 
+  mutate(trump_wins_state = (new_prediction > 50))
 
 # "flat president" correction to the model based on rank
-fp_new_prediction <- fd_death_frac_clean %>% 
+fp_new_prediction <- fp_death_frac_clean %>% 
   left_join(prediction, by = 'state') %>%
   mutate(pressure_toward_trump = str_detect(lean, 's')*(2*favors_trump-1)) %>% 
   mutate(new_prediction = trump_predicted_winner + pressure_toward_trump) %>% 
   mutate(trump_wins_state = (new_prediction > 0))
 
 # "scaled president" correction to the model based on rank
-sp_new_prediction <- fd_death_frac_clean %>% 
+sp_new_prediction <- fp_death_frac_clean %>% 
   left_join(prediction, by = 'state') %>%
   mutate(new_prediction = prediction + favors_trump) %>% 
   mutate(trump_wins_state = (new_prediction > 50))
 
-
-# fd_new_prediction %>% 
-#   filter(trump_predicted_winner != trump_wins_state) %>% 
-#   select(state, trump_predicted_winner, trump_wins_state)
-# 
-# sd_new_prediction %>% 
-#   filter(trump_predicted_winner != trump_wins_state) %>% 
-#   select(state, trump_predicted_winner, trump_wins_state)
-# 
-# new_prediction %>% 
-#   filter(lean == 's') %>% 
-#   select(state, trump_predicted_winner, trump_wins_state, prediction)
+# Below I make the relevant maps.
 
 # I make the map for the "flat governor" model
 plot_usmap(data = fg_new_prediction, regions = "states", values = "trump_wins_state") + 
   scale_fill_manual(values = c("blue", "red"), name = "state winner") +
   theme_void()+
-  labs(title = 'flat governor')
+  theme(legend.position = 'None')+
+  labs(title = '2020 Presidential Prediction by Ad Spending and Coronavirus Effects',
+       subtitle = 'Effects Applied to the Governors on a Binary Basis')
+
+ggsave("../figures/prediction_flat_governor.png", height = 6, width = 8)
 
 # scaled governor
-# INCOMPLETE
 plot_usmap(data = sg_new_prediction, regions = "states", values = "trump_wins_state") + 
   scale_fill_manual(values = c("blue", "red"), name = "state winner") +
   theme_void()+
-  labs(title = 'scaled governor')
+  theme(legend.position = 'None')+
+  labs(title = '2020 Presidential Prediction by Ad Spending and Coronavirus Effects',
+       subtitle = 'Effects Applied to the Governors on a Scaled Basis')
+
+ggsave("../figures/prediction_scaled_governor.png", height = 6, width = 8)
 
 # I make the map for the "flat president" model
 plot_usmap(data = fp_new_prediction, regions = "states", values = "trump_wins_state") + 
   scale_fill_manual(values = c("blue", "red"), name = "state winner") +
   theme_void()+
-  labs(title = 'flat president')
+  theme(legend.position = 'None')+
+  labs(title = '2020 Presidential Prediction by Ad Spending and Coronavirus Effects',
+       subtitle = 'Effects Applied to the President on a Binary Basis')
+
+ggsave("../figures/prediction_flat_president.png", height = 6, width = 8)
 
 # I make the map for the "scaled president" model
 plot_usmap(data = sp_new_prediction, regions = "states", values = "trump_wins_state") + 
   scale_fill_manual(values = c("blue", "red"), name = "state winner") +
   theme_void()+
-  labs(title = 'scaled president')
+  theme(legend.position = 'None')+
+  labs(title = '2020 Presidential Prediction by Ad Spending and Coronavirus Effects',
+       subtitle = 'Effects Applied to the President on a Scaled Basis')
 
-# sd_new_prediction %>% 
-#   filter(trump_wins_state) %>% 
-#   summarize(sum(electors))
-# 
-# sd_new_prediction %>% 
-#   select(state, prediction, new_prediction, trump_predicted_winner, trump_wins_state)
-  
+ggsave("../figures/prediction_scaled_president.png", height = 6, width = 8)
