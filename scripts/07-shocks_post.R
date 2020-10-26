@@ -139,3 +139,21 @@ plot_usmap(data = sp_new_prediction, regions = "states", values = "trump_wins_st
        subtitle = 'Effects Applied to the President on a Scaled Basis')
 
 ggsave("../figures/prediction_scaled_president.png", height = 6, width = 8)
+
+# I check the electoral votes in each of these cases.
+
+fg_new_prediction %>% 
+  group_by(trump_wins_state) %>% 
+  summarize(votes = sum(electors))
+
+sg_new_prediction %>% 
+  group_by(trump_wins_state) %>% 
+  summarize(votes = sum(electors))
+
+fp_new_prediction %>% 
+  group_by(trump_wins_state) %>% 
+  summarize(votes = sum(electors))
+
+sp_new_prediction %>% 
+  group_by(trump_wins_state) %>% 
+  summarize(votes = sum(electors))
