@@ -52,8 +52,8 @@ In the case where half the states are successes and half are failures, my update
 
 | Candidate             | Electoral Votes 
 |-----------------------|-----------------
-| Trump                 | 208             
-| Biden                 | 330    
+| Trump                 | 190             
+| Biden                 | 348    
 
 In the case where states are assigned scaled degrees of success and failure, my updated prediction is:
 
@@ -61,8 +61,8 @@ In the case where states are assigned scaled degrees of success and failure, my 
 
 | Candidate             | Electoral Votes 
 |-----------------------|-----------------
-| Trump                 | 208             
-| Biden                 | 330    
+| Trump                 | 176             
+| Biden                 | 362    
 
 # Blaming the President
 
@@ -74,8 +74,8 @@ In the case where half the states are successes and half are failures, my update
 
 | Candidate             | Electoral Votes 
 |-----------------------|-----------------
-| Trump                 | 208             
-| Biden                 | 330    
+| Trump                 | 183             
+| Biden                 | 355    
 
 In the case where states are assigned scaled degrees of success and failure, my updated prediction is:
 
@@ -83,8 +83,8 @@ In the case where states are assigned scaled degrees of success and failure, my 
 
 | Candidate             | Electoral Votes 
 |-----------------------|-----------------
-| Trump                 | 208             
-| Biden                 | 330    
+| Trump                 | 233             
+| Biden                 | 305    
 
 # Analysis and Reflection
 
