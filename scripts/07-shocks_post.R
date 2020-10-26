@@ -18,36 +18,47 @@ totals <- state_cases %>%
   filter(state %notin% c('AS', 'FSM', 'NYC', 'GU', 'MP', 'RMI', 'PW', 'PR', 'VI')) %>% 
   mutate(death_rate = total_deaths/total_cases)
 
+# We combine the relevant data sets to get population, death counts, electors, and
+# state leans together.
 deaths_pop<- battleground %>% 
   left_join(pop_density, by = c('state')) %>% 
   mutate(state = ifelse(state == 'D.C.', 'DC', setNames(state.abb, state.name)[state])) %>% 
   left_join(totals, by = c('state'))
 
+# We get the death rate per capita and arrange the tibble in from worst job to best job.
 death_frac <- deaths_pop %>% 
-  #filter(lean == 's') %>% 
   mutate(death_frac = total_deaths/population) %>% 
   arrange(desc(death_frac))
 
-# This does flat change through governor
-death_frac_clean <- tibble::rowid_to_column(death_frac, "rank") %>% 
+# Below we perform similar manipulations for the four different cases I am considering.
+# The results have a variable called "favors_trump" that will be used for the correction
+# to my previous model.
+
+# This assumes binary success/failure and attributes responsibility to the governor.
+# I call this "binary governor" model
+fg_death_frac_clean <- tibble::rowid_to_column(death_frac, "rank") %>% 
   mutate(success = (rank>ceiling(n()/2))) %>% 
   mutate(favors_trump = (str_detect(governor, 'r')+success != 1)) %>% 
   select(-lean, -electors)
 
-# scaled change through governor INCOMPLETE
-death_frac_clean <- tibble::rowid_to_column(death_frac, "rank") %>% 
+# This assumes scaled success/failure and attributes responsibility to the governor
+# I call this "scaled governor" model
+# INCOMPLETE
+sg_death_frac_clean <- tibble::rowid_to_column(death_frac, "rank") %>% 
   mutate(success = (rank>ceiling(n()/2))) %>% 
   mutate(favors_trump = (str_detect(governor, 'r')+success != 1)) %>% 
   select(-lean, -electors)
 
-# flat change direct
-fd_death_frac_clean <- tibble::rowid_to_column(death_frac, "rank") %>% 
+# This assumes binary success/failure and attributes responsibility to the president
+# I call this "binary president" model
+fp_death_frac_clean <- tibble::rowid_to_column(death_frac, "rank") %>% 
   mutate(favors_trump = (rank>ceiling(n()/2))) %>% 
   select(-lean, -electors)
 
-# scaled change direct
-sd_death_frac_clean <- tibble::rowid_to_column(death_frac, "rank") %>% 
-  mutate(favors_trump = 8*(rank-1)/50 - 4) %>% 
+# This assumes scaled success/failure and attributes responsibility to the president
+# I call this "scaled president" model
+sp_death_frac_clean <- tibble::rowid_to_column(death_frac, "rank") %>% 
+  mutate(favors_trump = 10*(rank-1)/50 - 5) %>% 
   select(-lean, -electors)
 
 # ==========
@@ -57,68 +68,73 @@ sd_death_frac_clean <- tibble::rowid_to_column(death_frac, "rank") %>%
 # to make a prediction from scratch, which would likely be unreasonable.
 # ==========
 
-# Using an object from that other script, we can compare the 
+# Using an object from that other script, we can update the prediction. For "flat" models,
+# I simply reverse the 
 
-#flat governor
-new_prediction <- death_frac_clean %>% 
+# "flat governor" correction to the model based on rank
+fg_new_prediction <- fg_death_frac_clean %>% 
   left_join(prediction, by = 'state') %>%
   mutate(pressure_toward_trump = str_detect(lean, 's')*(2*favors_trump-1)) %>% 
   mutate(new_prediction = trump_predicted_winner + pressure_toward_trump) %>% 
   mutate(trump_wins_state = (new_prediction > 0))
 
-# scaled governor
+# "scaled governor" correction to the model based on rank
 
-#flat direct
-fd_new_prediction <- fd_death_frac_clean %>% 
+# "flat president" correction to the model based on rank
+fp_new_prediction <- fd_death_frac_clean %>% 
   left_join(prediction, by = 'state') %>%
   mutate(pressure_toward_trump = str_detect(lean, 's')*(2*favors_trump-1)) %>% 
   mutate(new_prediction = trump_predicted_winner + pressure_toward_trump) %>% 
   mutate(trump_wins_state = (new_prediction > 0))
 
-# scaled direct
-sd_new_prediction <- fd_death_frac_clean %>% 
+# "scaled president" correction to the model based on rank
+sp_new_prediction <- fd_death_frac_clean %>% 
   left_join(prediction, by = 'state') %>%
   mutate(new_prediction = prediction + favors_trump) %>% 
   mutate(trump_wins_state = (new_prediction > 50))
 
 
-fd_new_prediction %>% 
-  filter(trump_predicted_winner != trump_wins_state) %>% 
-  select(state, trump_predicted_winner, trump_wins_state)
+# fd_new_prediction %>% 
+#   filter(trump_predicted_winner != trump_wins_state) %>% 
+#   select(state, trump_predicted_winner, trump_wins_state)
+# 
+# sd_new_prediction %>% 
+#   filter(trump_predicted_winner != trump_wins_state) %>% 
+#   select(state, trump_predicted_winner, trump_wins_state)
+# 
+# new_prediction %>% 
+#   filter(lean == 's') %>% 
+#   select(state, trump_predicted_winner, trump_wins_state, prediction)
 
-sd_new_prediction %>% 
-  filter(trump_predicted_winner != trump_wins_state) %>% 
-  select(state, trump_predicted_winner, trump_wins_state)
-
-new_prediction %>% 
-  filter(lean == 's') %>% 
-  select(state, trump_predicted_winner, trump_wins_state, prediction)
-
-# flat governor
-plot_usmap(data = new_prediction, regions = "states", values = "trump_wins_state") + 
+# I make the map for the "flat governor" model
+plot_usmap(data = fg_new_prediction, regions = "states", values = "trump_wins_state") + 
   scale_fill_manual(values = c("blue", "red"), name = "state winner") +
   theme_void()+
   labs(title = 'flat governor')
 
 # scaled governor
 # INCOMPLETE
-
-# flat direct
-plot_usmap(data = fd_new_prediction, regions = "states", values = "trump_wins_state") + 
+plot_usmap(data = sg_new_prediction, regions = "states", values = "trump_wins_state") + 
   scale_fill_manual(values = c("blue", "red"), name = "state winner") +
   theme_void()+
-  labs(title = 'flat direct')
+  labs(title = 'scaled governor')
 
-# scaled direct
-plot_usmap(data = sd_new_prediction, regions = "states", values = "trump_wins_state") + 
+# I make the map for the "flat president" model
+plot_usmap(data = fp_new_prediction, regions = "states", values = "trump_wins_state") + 
   scale_fill_manual(values = c("blue", "red"), name = "state winner") +
   theme_void()+
-  labs(title = 'scaled direct')
+  labs(title = 'flat president')
 
-sd_new_prediction %>% 
-  filter(trump_wins_state) %>% 
-  summarize(sum(electors))
+# I make the map for the "scaled president" model
+plot_usmap(data = sp_new_prediction, regions = "states", values = "trump_wins_state") + 
+  scale_fill_manual(values = c("blue", "red"), name = "state winner") +
+  theme_void()+
+  labs(title = 'scaled president')
 
-sd_new_prediction %>% 
-  select(state, prediction, new_prediction, trump_predicted_winner, trump_wins_state)
+# sd_new_prediction %>% 
+#   filter(trump_wins_state) %>% 
+#   summarize(sum(electors))
+# 
+# sd_new_prediction %>% 
+#   select(state, prediction, new_prediction, trump_predicted_winner, trump_wins_state)
   
