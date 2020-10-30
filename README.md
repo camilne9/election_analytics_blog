@@ -21,3 +21,6 @@ In this post I consider the effects of voter turnout and voter demographics on D
 
 ## [Shocks: Covid-19](posts/shocks.md)
 In general we can consider how unpredictable or unprecedented "shocks" influence an election. For the 2020 election cycle, Covid-19 presents a massive example of such a shock. I explore how Covid-19 effects the 2020 Presidential election based on deaths per capita. (10/25/2020)
+
+## [Final Election Prediction](posts/prediction.md)
+This is my final post before the 2020 US Presidential Election. I will give my final prediction for the election including electoral predictions, state level popular vote predictions, and a national popular vote prediction. (11/1/2020)
