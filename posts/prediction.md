@@ -26,7 +26,7 @@ To predict the state level two-party vote share, I perform a linear regression o
 
 Now we can use this regression to predict states 
 
-![table of state vote share predictions](../figures/predicted_state_votes.png)
+![table of state vote share predictions](../figures/table_state_predictions.png)
 
 Aggregating these predictions into a map, we get a predicted electoral map of:
 
@@ -40,4 +40,10 @@ First, consider whether it is reasonable that we use our state-level two-party v
 ![national vote share from state vote share](../figures/national_votes_from_states.png)
 
 ## Electoral Vote Prediction
+
+![win probabilities](../figures/win_probabilities.png)
+
+I simulated the election 10,000 times using the win probabilities determined by current polling averages and based on historical data on win rates for states with these polling averages.
+
+![simulated electoral vote counts](../figures/simulated_electoral_vote.png)
 
