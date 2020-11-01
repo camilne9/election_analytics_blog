@@ -13,6 +13,8 @@ As a consequence, the model I am using for this prediction is not the most usefu
 
 To predict the national two-party vote share, I use the predicted state level two-party vote shares and weight them by the size of their voting eligible populations. Although this method does not account for possible difference in turnout, historical data indicates that state level two-party vote shares aggregate to a close estimate of the national two-party vote share despite the possibility of different turnout rates.
 
+To predict the final electoral vote share and map, I will again start with py predicted state-level two-party vote shares. I will predict the I will also use electoral vote share to make an estimate of Donald Trump's win odds by simulating that election 10,000 times
+
 # The Model
 
 ## State-Level Two-Party Vote Share
