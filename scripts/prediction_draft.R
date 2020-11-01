@@ -146,16 +146,16 @@ plot_usmap(data = final_prediction, regions = "states", values = "trump_predicte
 
 polls_vs_vote_V2 %>% 
   mutate(prediction = 1.03279*normalize_rep -1.13674) %>% 
-  mutate(error = prediction - normalize_rep) %>% 
-  mutate(stratification = floor((normalize_rep + 1/2))) %>% 
- # mutate(stratification = 5*floor((normalize_rep + 5/2)/5)) %>% 
-  # mutate(stratification = ifelse(normalize_rep < 40, "<40", 
+  mutate(error = prediction - normalize_rep) %>%
+  # mutate(stratification = floor((normalize_rep + 1/2))) %>% 
+  mutate(stratification = 5*floor((normalize_rep + 5/2)/5)) %>%
+  # mutate(stratification = ifelse(normalize_rep < 40, "<40",
   #                         ifelse(40<=normalize_rep & normalize_rep<45, "40-45",
   #                         ifelse(45<=normalize_rep & normalize_rep < 50, "45-50",
   #                         ifelse(50<=normalize_rep & normalize_rep<55, "50-55",
-  #                         ifelse(55<=normalize_rep & normalize_rep < 60, "55-60", ">60")))))) %>% 
+  #                         ifelse(55<=normalize_rep & normalize_rep < 60, "55-60", ">60")))))) %>%
   group_by(stratification) %>% 
-  summarize(stdev = (sum(error^2)/(n()-1))**(.5), count = n()) %>% 
+  summarize(stdev = (sum(error**2)/(n()-1))**(.5), count = n()) %>% 
   mutate(standard_error = stdev/(count)**(.5)) %>% View()
 
 # ========= 2016 for fun
@@ -254,4 +254,5 @@ election_simulation %>%
 election_simulation %>% 
   ggplot(aes(x = electoral_votes))+
   geom_histogram()+
-  geom_vline(xintercept = 269,col="red")
+  geom_vline(xintercept = 269,col="red")+
+  geom_vline(xintercept = mean(electoral_votes),col="red")
