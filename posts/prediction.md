@@ -24,6 +24,14 @@ To predict the state level two-party vote share, I perform a linear regression o
 
 ![national vote share from state vote share](../figures/polling_vs_actual.png)
 
+The regression line is given by the equation:
+
+Republican Vote Share = 1.03*(Republican Polling Average) - 1.3
+
+First we note that this line is fairly close to the line of Vote Share = Polling Average. This makes sense because both vote share and polling average are measures of which candidate people want to win. We can interpret the coefficients as the ways in which polling tends to be wrong historically. In particular we observe that if Republicans and Democrats are polling equivalently (50% for each party), then the Republican is predicted to get a higher two-party vote share. This means that my model is adjusting for the fact that in close states, the polling tends to expect a higher Democratic vote share than tends to result. 
+
+
+### Making a Prediction
 Now we can use this regression to predict states 
 
 ![table of state vote share predictions](../figures/table_state_predictions.png)
@@ -39,6 +47,15 @@ First, consider whether it is reasonable that we use our state-level two-party v
 
 ![national vote share from state vote share](../figures/national_votes_from_states.png)
 
+Now we can use our state level predictions to generate a prediction for the national two party vote share of the two candidates using [2020 VEP data](http://www.electproject.org/2020g). Using this weighting we predict the following result for national two party vote share:
+
+| Candidate | National Two-Party Vote Share |
+|-----------|-------------------------------|
+| Trump     | 46.1                          |
+| Biden     | 53.9                          |
+
+It is difficult to quantify the uncertainty on this prediction because there is ***uncertainty*** both from the fact that I am using *predicted* two-party vote share instead of *actual* two-party vote share, and from the fact that **there may be different voter turnouts in each state**. Recall from above that each of the state popular vote predictions has a root mean squared error (RMSE) of 2.73; we can use this as a sort of proxy for error in this prediction. We observe that Trump's predicted two-party popular vote share is within two RMSE of giving him a majority of the vote. This means that despite the fact that **I predict Biden will win the national two-party vote**, **there is a reasonable probability that Trump wins the national two-party popular vote**.
+
 ## Electoral Vote Prediction
 
 ![win probabilities](../figures/win_probabilities.png)
@@ -46,4 +63,6 @@ First, consider whether it is reasonable that we use our state-level two-party v
 I simulated the election 10,000 times using the win probabilities determined by current polling averages and based on historical data on win rates for states with these polling averages.
 
 ![simulated electoral vote counts](../figures/simulated_electoral_vote.png)
+
+From this plot we can see that Trump 
 
