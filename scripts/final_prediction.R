@@ -4,6 +4,7 @@ library(usmap)
 library(ggthemes)
 library(gt)
 library(caret)
+library(webshot)
 
 # In this script I generate all of the relevant content for my final prediction blog post.
 
@@ -177,7 +178,9 @@ final_prediction %>%
   mutate(Margin = paste("±", Margin)) %>% 
   select(State, "Trump Vote Share", "Biden Vote Share", Margin) %>% 
   gt() %>% 
-  tab_header("Predicted State-Level Two-Party Vote Shares")
+  tab_header("Predicted State-Level Two-Party Vote Shares") %>% 
+
+gtsave("../figures/table_state_predictions.png")
 
 # Now I can use the state vote predictions to make a national popular vote share prediction.
 vep_total %>% 
