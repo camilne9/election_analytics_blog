@@ -246,3 +246,13 @@ election_simulation %>%
 
 ggsave("../figures/simulated_electoral_vote.png", height = 6, width = 8)
 
+# Now I consider the width of this plot.
+election_simulation %>% 
+  mutate(avg = mean(electoral_votes))
+
+buffer <- 58
+mean_electors <- 211
+election_simulation %>% 
+  filter(electoral_votes < mean_electors + buffer & electoral_votes > mean_electors - buffer) %>% 
+  nrow()
+

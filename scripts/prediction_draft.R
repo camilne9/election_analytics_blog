@@ -283,3 +283,15 @@ final_prediction %>%
   select(State, "Trump Vote Share", "Biden Vote Share", Margin) %>% 
   gt() %>% 
   tab_header("Predicted State-Level Two-Party Vote Shares")
+
+
+mean_electors <- 211
+  
+election_simulation %>% 
+  mutate(avg = mean(electoral_votes))
+
+buffer <- 58
+mean_electors <- 211
+election_simulation %>% 
+  filter(electoral_votes < mean_electors + buffer & electoral_votes > mean_electors - buffer) %>% 
+  nrow()
