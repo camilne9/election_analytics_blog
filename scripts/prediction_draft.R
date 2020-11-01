@@ -256,3 +256,30 @@ election_simulation %>%
   geom_histogram()+
   geom_vline(xintercept = 269,col="red")+
   geom_vline(xintercept = mean(election_simulation$electoral_votes),col="Green")
+
+
+# To consider the uncertainty, I generate the standard error in different clusters along the 
+# regression line
+standard_errors <- polls_vs_vote_V2 %>% 
+  mutate(prediction = 1.03279*normalize_rep -1.13674) %>% 
+  mutate(error = prediction - normalize_rep) %>%
+  mutate(stratification = 5*floor((normalize_rep + 5/2)/5)) %>%
+  group_by(stratification) %>% 
+  summarize(stdev = (sum(error**2)/(n()-1))**(.5), count = n()) %>% 
+  mutate(standard_error = stdev/(count)**(.5)) %>%
+  mutate(standard_error = ifelse(stratification == 10, 0.95591132, standard_error)) %>% 
+  filter(standard_error != Inf) %>% 
+  select(stratification, standard_error)
+
+# I merge the standard errors with the tibble with current polls and predictions:
+final_prediction %>% 
+  mutate(stratification = 5*floor((trump + 5/2)/5)) %>%
+  left_join(standard_errors, by = 'stratification') %>% 
+  mutate(State = state, 
+         "Trump Vote Share" = prediction, 
+         "Biden Vote Share" = 100 - prediction,
+         Margin = round(2*standard_error, digits = 2)) %>%
+  mutate(Margin = paste("±", Margin)) %>% 
+  select(State, "Trump Vote Share", "Biden Vote Share", Margin) %>% 
+  gt() %>% 
+  tab_header("Predicted State-Level Two-Party Vote Shares")
