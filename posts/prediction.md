@@ -73,5 +73,5 @@ I simulated the election 10,000 times using the win probabilities determined by 
 
 ![simulated electoral vote counts](../figures/simulated_electoral_vote.png)
 
-From this plot we can see that Trump 
+From this plot we can see that **Trump does not get a majority of electoral votes in most simulations**. In particular, **on average Trump receives 211 electoral votes**. Furthermore, **95% of all simulations have Trump getting between 152 and 270 electoral votes** and **Trump won the election in 2.49% of simulations**. This means that Biden is more likely to win the election than Trump, but Trump still has a nonzero chance of winning.
 
