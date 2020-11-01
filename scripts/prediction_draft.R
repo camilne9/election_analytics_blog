@@ -132,7 +132,7 @@ summary(lm_polling)
 final_prediction <- current_polls %>% 
   # normalizing to two-party
   mutate(trump_2p = 100*trump/(trump + biden), biden_2p = 100*biden/(trump + biden)) %>% 
-  mutate(prediction = 1.03279*trump -1.13674) %>% 
+  mutate(prediction = 1.03279*trump_2p -1.13674) %>% 
   mutate(trump_predicted_winner = (prediction > 50)) %>% 
   mutate(trump = trump_2p, biden = biden_2p) %>% 
   select(-trump_2p, -biden_2p)
@@ -147,12 +147,36 @@ plot_usmap(data = final_prediction, regions = "states", values = "trump_predicte
 polls_vs_vote_V2 %>% 
   mutate(prediction = 1.03279*normalize_rep -1.13674) %>% 
   mutate(error = prediction - normalize_rep) %>% 
-  mutate(stratification = ifelse(normalize_rep < 40, "<40", 
-                                 ifelse(40<=normalize_rep & normalize_rep<50, "40-50",
-                                        ifelse(50<=normalize_rep & normalize_rep < 60, "50-60", ">60")))) %>% 
+  mutate(stratification = 5*floor((normalize_rep + 5/2)/5)) %>% 
+  # mutate(stratification = ifelse(normalize_rep < 40, "<40", 
+  #                         ifelse(40<=normalize_rep & normalize_rep<45, "40-45",
+  #                         ifelse(45<=normalize_rep & normalize_rep < 50, "45-50",
+  #                         ifelse(50<=normalize_rep & normalize_rep<55, "50-55",
+  #                         ifelse(55<=normalize_rep & normalize_rep < 60, "55-60", ">60")))))) %>% 
   group_by(stratification) %>% 
   summarize(stdev = (sum(error^2)/(n()-1))**(.5), count = n()) %>% 
-  mutate(standard_error = stdev/(count)**(.5))
+  mutate(standard_error = stdev/(count)**(.5)) %>% View()
+
+# ========= 2016 for fun
+test2016 <- polls_vs_vote_V2 %>% 
+  mutate(prediction = 1.03279*normalize_rep -1.13674) %>% 
+  filter(year == 2016) %>%
+  mutate(trump_predicted_winner = (prediction > 50)) %>% 
+  mutate(trump_won = (R_pv2p > 50))
+
+plot_usmap(data = test2016, regions = "states", values = "trump_won") + 
+  scale_fill_manual(values = c("blue", "red"), name = "state winner") +
+  theme_void()+
+  theme(legend.position = 'None')+
+  labs(title = "2016 Actual")
+
+plot_usmap(data = test2016, regions = "states", values = "trump_predicted_winner") + 
+  scale_fill_manual(values = c("blue", "red"), name = "state winner") +
+  theme_void()+
+  theme(legend.position = 'None')+
+  labs(title = "2016 Predicted")
+# ==========
+
 
 polls_vs_vote_V2 %>% 
   mutate(prediction = 1.03279*normalize_rep -1.13674) %>% 
@@ -163,7 +187,8 @@ polls_vs_vote_V2 %>%
 
 win_probabilities <- polls_vs_vote_V2 %>% 
   filter(40 <= normalize_rep & normalize_rep < 60) %>% 
-  mutate(binned_rep = 2*floor((normalize_rep + .5)/2)) %>%
+  # mutate(binned_rep = 2*floor((normalize_rep + 1)/2)) %>%
+  mutate(binned_rep = 5*floor((normalize_rep + 5/2)/5)) %>%
   mutate(rep_win = (R_pv2p > 50)) %>% 
   group_by(binned_rep) %>% 
   summarize(win_rate = sum(rep_win)/n())
@@ -173,14 +198,15 @@ win_probabilities %>%
   geom_col()
 
 win_rate_2020 <- final_prediction %>% 
-  mutate(binned_rep = 2*floor((trump + .5)/2)) %>% 
+  # mutate(binned_rep = 2*floor((trump + .5)/2)) %>% 
+  mutate(binned_rep = 5*floor((trump + 5/2)/5)) %>% 
   left_join(win_probabilities, by = 'binned_rep') %>% 
   mutate(win_rate = ifelse(!is.na(win_rate), win_rate, 
                            ifelse(binned_rep < 50, 0, 1))) %>% 
   select(state, win_rate, electors)
 
 win_rate_2020 %>% 
-  # filter(win_rate == 0) %>% 
+  # filter(win_rate == 1) %>% 
   filter(win_rate != 0 & win_rate != 1) %>%
   mutate(votes = sum(electors)) %>% 
   View()
@@ -209,9 +235,20 @@ for (val in 1:9999)
 ## DO NOT RERUN ACCIDENTALLY
 ## ===========
 
+win_rate_2020 %>% 
+  mutate(randon_num = runif(51), trump_win = (win_rate > randon_num)) %>% 
+  filter(trump_win) %>% 
+  group_by(trump_win) %>% 
+  summarize(electoral_votes = sum(electors)) %>% 
+  ungroup() %>% 
+  mutate(trump_win = (electoral_votes >= 269))
+
 election_simulation %>% 
   group_by(trump_win) %>% 
   summarize(wins = n())
+
+election_simulation %>% 
+  mutate(avg_electors = mean(electoral_votes))
 
 election_simulation %>% 
   ggplot(aes(x = electoral_votes))+
