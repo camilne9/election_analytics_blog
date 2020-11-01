@@ -147,7 +147,8 @@ plot_usmap(data = final_prediction, regions = "states", values = "trump_predicte
 polls_vs_vote_V2 %>% 
   mutate(prediction = 1.03279*normalize_rep -1.13674) %>% 
   mutate(error = prediction - normalize_rep) %>% 
-  mutate(stratification = 5*floor((normalize_rep + 5/2)/5)) %>% 
+  mutate(stratification = floor((normalize_rep + 1/2))) %>% 
+ # mutate(stratification = 5*floor((normalize_rep + 5/2)/5)) %>% 
   # mutate(stratification = ifelse(normalize_rep < 40, "<40", 
   #                         ifelse(40<=normalize_rep & normalize_rep<45, "40-45",
   #                         ifelse(45<=normalize_rep & normalize_rep < 50, "45-50",
