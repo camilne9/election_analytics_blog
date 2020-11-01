@@ -3,6 +3,7 @@ library(lubridate)
 library(usmap)
 library(ggthemes)
 library(gt)
+library(caret)
 
 # In this script I generate all of the relevant content for my final prediction blog post.
 
@@ -130,8 +131,8 @@ lm_polling <- lm(R_pv2p ~ normalize_rep, data = polls_vs_vote_V2)
 summary(lm_polling)  
 
 # I do leave-one-out validation
+train(R_pv2p ~ normalize_rep, method = "lm", data = polls_vs_vote_V2, trControl = trainControl(method = "LOOCV"))
 
-###### MUST DO THIS VALIDATION
 
 # Now we can make a prediction on each of the states using the regression from the polling data:
 final_prediction <- current_polls %>% 

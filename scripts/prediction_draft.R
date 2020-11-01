@@ -255,4 +255,4 @@ election_simulation %>%
   ggplot(aes(x = electoral_votes))+
   geom_histogram()+
   geom_vline(xintercept = 269,col="red")+
-  geom_vline(xintercept = mean(electoral_votes),col="red")
+  geom_vline(xintercept = mean(election_simulation$electoral_votes),col="Green")
