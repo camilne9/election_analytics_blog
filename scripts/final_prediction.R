@@ -256,3 +256,8 @@ election_simulation %>%
   filter(electoral_votes < mean_electors + buffer & electoral_votes > mean_electors - buffer) %>% 
   nrow()
 
+# Now I find Trump's win probability as the percent of simulations he won.
+election_simulation %>% 
+  filter(electoral_votes >= 269) %>% 
+  nrow()*100/10000
+

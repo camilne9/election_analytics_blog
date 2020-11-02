@@ -295,3 +295,7 @@ mean_electors <- 211
 election_simulation %>% 
   filter(electoral_votes < mean_electors + buffer & electoral_votes > mean_electors - buffer) %>% 
   nrow()
+
+election_simulation %>% 
+  filter(electoral_votes >= 269) %>% 
+  nrow()
