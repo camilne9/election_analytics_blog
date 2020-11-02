@@ -55,7 +55,11 @@ This gives an electoral result of:
 
 This means that **my prediction is that Biden Wins the 2020 Presidential Election**.
 
-However, again it is worth recalling that each of the state two-party popular vote percentages has uncertainty. In particular, if we color each state whose predicted two party vote share is within one RMSE of flipping which candidate wins, we get the following election map:
+However, again it is worth recalling that each of the state two-party popular vote percentages has uncertainty. In particular, if we color states purple when their predicted two party vote share is within one RMSE of flipping which candidate wins, we get the following election map:
+
+![electoral map with uncertainty from state popular vote predictions](../figures/uncertainty_prediction.png)
+
+This helps us to see the uncertainty. **The states that are decided by less than a reasonable margin of error contain enough electoral votes to entirely flip the result of the election** (because in the map there are 259 blue electors, 153 purple electors, and 126 red electors). 
 
 ## National Two-Party Vote Share
 
