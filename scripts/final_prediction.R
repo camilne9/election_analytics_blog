@@ -154,8 +154,20 @@ plot_usmap(data = final_prediction, regions = "states", values = "trump_predicte
 
 ggsave("../figures/polling_state_predictions.png", height = 6, width = 8)
 
+# To illustrate uncertainty, I color all the states decided by less than one RMSE purple.
+uncertainty_prediction <- final_prediction %>% 
+  mutate(trump_predicted_winner = ifelse(abs(prediction - 50) < 2.734152, "tossup", trump_predicted_winner))
 
-# I make a table
+plot_usmap(data = uncertainty_prediction, regions = "states", values = "trump_predicted_winner") + 
+  scale_fill_manual(values = c("blue", "purple", "red"), name = "state winner") +
+  theme_void()+
+  theme(legend.position = 'None')+
+  labs(title = "Prediction 2020 Electoral Map",
+       subtitle = "Based on Updated Polls as of 10/30/2020")
+
+ggsave("../figures/uncertainty_prediction.png", height = 6, width = 8)
+
+# I make a table of the state election results
 final_prediction %>% 
   mutate(State = state, 
          "Trump Vote Share" = round(prediction, 1),
