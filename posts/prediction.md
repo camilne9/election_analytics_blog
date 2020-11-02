@@ -46,7 +46,16 @@ Aggregating these predictions into a map, we get a **predicted electoral map** o
 
 ![electoral map from state popular vote predictions](../figures/polling_state_predictions.png)
 
-However, again it is worth recalling that 
+This gives an electoral result of:
+
+| Candidate | Electoral Votes |
+|-----------|-----------------|
+| Trump     | 188             |
+| Biden     | 350             |
+
+This means that **my prediction is that Biden Wins the 2020 Presidential Election**.
+
+However, again it is worth recalling that each of the state two-party popular vote percentages has uncertainty. In particular, if we color each state whose predicted two party vote share is within one RMSE of flipping which candidate wins, we get the following election map:
 
 ## National Two-Party Vote Share
 
@@ -73,5 +82,15 @@ I simulated the election 10,000 times using the win probabilities determined by 
 
 ![simulated electoral vote counts](../figures/simulated_electoral_vote.png)
 
-From this plot we can see that **Trump does not get a majority of electoral votes in most simulations**. In particular, **on average Trump receives 211 electoral votes**. Furthermore, **95% of all simulations have Trump getting between 152 and 270 electoral votes** and **Trump won the election in 2.49% of simulations**. This means that Biden is more likely to win the election than Trump, but Trump still has a nonzero chance of winning.
+From this plot we can see that **Trump does not get a majority of electoral votes in most simulations**. In particular, **on average Trump receives 211 electoral votes**. Furthermore, **95% of all simulations have Trump getting between 152 and 270 electoral votes** and **Trump won the election in 2.49% of simulations**. 
 
+This means that **Biden is more likely to win the election than Trump, but Trump still has a nonzero chance of winning**.
+
+
+# Conclusion
+
+My model uses a regression of historical polling data from the October and November and polling data from 10/30/2020 to predict the 2020 presidential election. The state-by-state result of my model suggests that **Biden will win the electoral vote with 350 votes to Trump's 188**. Furthermore, I predict that **Biden will win the national two-party popular vote with 53.9% of the vote to Trump's 46.1%**. Ultimately, I found that **Trump has a 2.49% chance of winning the election**.
+
+(Each of my predictions has associated uncertainties that are explained above.)
+
+In conclusion, while there is a chance that Trump wins, ***I predict that Biden will win the 2020 US Presidential Election***.
