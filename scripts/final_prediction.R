@@ -178,6 +178,10 @@ final_prediction %>%
 
 gtsave("../figures/table_state_predictions.png")
 
+uncertainty_prediction %>% 
+  group_by(trump_predicted_winner) %>% 
+  summarize(electors = sum(electors))
+
 # Now I can use the state vote predictions to make a national popular vote share prediction.
 vep_total %>% 
   filter(year ==2020) %>% 
