@@ -28,3 +28,5 @@ Keeping in mind a high level of dependence on the polls, it can become more impo
 
 Additionally, I should add considerations to the relatedness of different states. The results of different states are correlated (ie "Blue Wall" states)
 
+another time I would also explicitly predict the districts in Maine and Nebraska
+
