@@ -96,9 +96,11 @@ In this case, I can sum over the predictions I made in each state. **I find that
 
 ### Brier Score
 
-I can also consider the quality of my prediction
+I can also consider the quality of my prediction using a Brier Score. The Brier Score is defined as
 
 ***Brier Score = 1/N * Σ(probability - outcome)^2***
+
+where N is the number of predictions (in this case 51), "probability" is the win odds I assign to a particular candidate (from 0 to 1), and the outcome is 1 if the candidate won and 0 otherwise.
 
 I did not generate state-level win probabilities, but I did make predictions for the winner in each state. If we take our probabilities to be 1 or 0 depending on my predicted winner, we can calculate a Brier Score. 
 
@@ -106,9 +108,9 @@ Below is a map that shows which states I predicted the winner of correctly.
 
 ![map show overestimates of Trump](../figures/accuracy_of_prediction.png)
 
-I find that I have a Brier Score of 
+**I find that I have a Brier Score of 0.0392.** Considering that giving equal win probabilities to each candidate in each state gives a Brier Score of 0.25, this is a low Brier Score.
 
-The contrast between my low Brier Score and high RMSE indicates that my point estimates for 
+The contrast between my low Brier Score and high RMSE indicates that my point estimates were inaccurate, but they tended to be inaccurate to an extent that they did not change which candidate would win. In this sense, the RMSE indicates that my low Brier Score does not mean that my point estimates were especially good.
 
 ## Win Probability
 
@@ -133,21 +135,17 @@ In order to keep a high level of dependence on the polls in a reasonable, it can
 
 I could test these hypotheses by re-generating my model but restricting the polling data I look at either only recent elections or to look at elections with an incumbent running for re-election. I could then see which iteration of my model has the best in and out of sample fit. The difficulty in testing the relative quality of these models, however, comes from the fact that **these variations require using smaller data sets. This means that there are fewer elections to which these models are applicable which makes it more likely that they are over-fit to a hyper-specific subset of elections.** It is difficult to distinguish between a model with a strong ability to predict and a model that is over-fit.
 
-Alternatively I could hedge my bets with 
-
 # Methodological Considerations
 
 Since I used a linear regression model to make my predictions about the two-party vote share in each state, it was possible that my prediction in a given states be impossibly high (>100%) or impossibly low (<0%). In principle this poses an issue for my model because I would need to either manually prevent such a prediction, or I need to accept that I may make unreasonable predictions.
 
 However, **I still think that the linear regression was a reasonable choice.** The way my model was constructed started with a polling average, which must be from 0-100, and gave a correction due to historical trends. **The magnitude of the correction was much smaller than the proximity of polling averages to 0 and 100.** This means that the impossible predictions remain an unlikely edge case. If I were, however, to make changes to the model that allows for larger corrections to the polling averages, this is more likely to become a relevant issue as the probability of getting an impossible prediction increases. (If polling averages tended to be more toward the extremes I would have the same issue with the same small correction term, but in that case I could still make strong electoral predictions by simply claiming that these states have very predictable outcomes.) 
 
-Additionally, I could add considerations to the relatedness of different states. The results of different states tend to be correlated. For example, clusters of states in the Midwest 
-Since my 
-Ignoring correlation has both pros and cons. 
+Additionally, I could add considerations to the relatedness of different states. The results of different states tend to be correlated. For example, clusters of states in the Midwest are likely to vote the same way. This means that my simulations, which treated each state as having independent probabilities, does not actually capture the way states behave. With that said 
 
-My forecast should also explicitly predict the districts in Maine and Nebraska. My prediction only considered state wide polling. This means that I had no ability to predict a district voting different than the overall state.
+My forecast should also explicitly predict the districts in Maine and Nebraska. My prediction only considered state wide polling. This means that I had no ability to predict a district voting different than the overall state. The districts could shift my prediction and, in a case of a close election, this could make a difference in the result. In order to incorporate these into my model I would need to see if districts adhere closely to the regression line I found. This may be difficult as we have less data on the voting behavior of these districts as opposed to whole states.
 
-Finally, my model also has the drawback of requiring that polling data from shortly before the election be available. Since I use October polling data to make the prediction, before this data is available my model is not applicable; you would need to use the most recent polling as a proxy, but this greatly compromises the predictive power since the regession line is specifically October polling data.
+Finally, my model also has the drawback of requiring that polling data from shortly before the election be available. Since I use October polling data to make the prediction, before this data is available my model is not applicable; you would need to use the most recent polling as a proxy, but this greatly compromises the predictive power since the regression line is specifically October polling data.
 
 
 # Conclusion
