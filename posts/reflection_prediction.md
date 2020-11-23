@@ -56,11 +56,11 @@ Furthermore I predicted that the national two-party vote share would be
 | Trump     | 46.1                          |
 | Biden     | 53.9                          |
 
-Finally, I simulated the election 10,000 times using win probabilities determined by historical data. These simulations gave Trump a 2.49% chance of winning the election.
+Finally, I simulated the election 10,000 times using win probabilities determined by historical data. **These simulations gave Trump a 2.49% chance of winning the election.**
 
 ## Methodology for Prediction
 
-My model was based entirely on polling and historical data on the accuracy of polling. I found that there is a strong correlation between polling close to the election and the election result. Thus, I fit a linear regression between the polling average and the actual two-party vote share in past elections and I used that regression line to predict the two party vote shares in each state. The regression line showed a deviation from the y = x line that would indicate perfect predictive power from the polls. This deviation shows that polling tends to overestimate Democrats and underestimate Republicans.
+**My model was based entirely on polling and historical data on the accuracy of polling.** I found that there is a strong correlation between polling close to the election and the election result. Thus, I fit a linear regression between the polling average and the actual two-party vote share in past elections. I used that regression line to predict the two party vote shares in each state based on polling in October. The regression line showed a deviation from the y = x line that would indicate perfect predictive power from the polls. This deviation shows that polling tends to overestimate Democrats and underestimate Republicans.
 
 Using the 
 
@@ -68,13 +68,21 @@ Using the
 
 ## State Level Predictions
 
-![map of states within one rmse](../figures/within_rmse_map.png)
+I can first consider the 
+
+![map of error by state](../figures/error_by_state_map.png)
+
+
+
+On each of my state level predictions, there was a RMSE from my model of 2.73. This means that we can get more information about the accuracy of my prediction by considering my uncertainty. Below we can see which states has a difference between predicted and actual results that was within one or two RMSE 
+
+![map of states within one rmse](../figures/within_1rmse_map.png)
 
 ![map of states within two rmse](../figures/within_2rmse_map.png)
 
-![map show overestimates of Trump](../figures/overestimated_trump_map.png)
+However, looking at RMSE does not consider whether my prediction over or underestimated Trump's two-party vote share. The map below indicates whether I under or overestimated Trump in a given state.
 
-![map of error by state](../figures/error_by_state_map.png)
+![map show overestimates of Trump](../figures/overestimated_trump_map.png)
 
 ## National Level Predictions
 
@@ -85,9 +93,9 @@ Since the actual election only happens once, it is difficult to assess how accur
 
 # The Error
 
-My model consistently underestimated Trump's performance. The primary source of this error is presumably the polling error. My model used the fact that Republicans are chronically underestimated in the polls according to historical data.
+My model consistently underestimated Trump's performance. The primary source of this error is presumably the polling error. My model used the fact that Republicans are chronically underestimated in the polls according to historical data. However, that was insufficient to account for the fact that the polls consistently underestimated Donald Trump. I discuss more about the 
 
-The two party vote shares predicted by my model were within one RMSE of the actual values in most states, which suggests that the error was within a reasonable margin of error of my point estimate. However the fact that the error in my predictions was consistently in the same direction (underestimating Trump) suggest a systematic, methodological error that causes this discrepancy.
+The two party vote shares predicted by my model were within one RMSE of the actual values in abut half the states and within two RMSE in most states, which suggests that the error was often within a reasonable margin of error of my point estimate. However the fact that the error in my predictions was consistently in the same direction (underestimating Trump) suggest a systematic, methodological error that causes this discrepancy.
 
 
 # Plan for Future Improvements
