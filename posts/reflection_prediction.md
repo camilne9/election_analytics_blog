@@ -15,7 +15,7 @@ With the results of the 2020 elections behind us, I can consider how well my [Fi
 
 With the electoral map being:
 
-INSERT ELECTORAL MAP HERE
+![Actual Election Result Map](../figures/actual_election_results.png)
 
 (Note that this visualization does not display the fact that Trump won 1 electoral vote from Maine's 2nd District and that Biden won 1 electoral vote from Nebraska's 2nd District.)
 
@@ -23,8 +23,8 @@ Furthermore, the national two-party vote share for each candidate was
 
 | Candidate | National Two-Party Vote Share |
 |-----------|-------------------------------|
-| Trump     | 46.1                          |
-| Biden     | 53.9                          |
+| Trump     | 48%                           |
+| Biden     | 52%                           |
 
 # Review of Model
 
@@ -56,25 +56,32 @@ Furthermore I predicted that the national two-party vote share would be
 | Trump     | 46.1                          |
 | Biden     | 53.9                          |
 
-Finally, I simulated the election 10,000 times using win probabilities determined by historical data 
+Finally, I simulated the election 10,000 times using win probabilities determined by historical data. These simulations gave Trump a 2.49% chance of winning the election.
 
 ## Methodology for Prediction
 
-My model was based entirely on polling and historical data on the accuracy of polling.
+My model was based entirely on polling and historical data on the accuracy of polling. I found that there is a strong correlation between polling close to the election and the election result. Thus, I fit a linear regression between the polling average and the actual two-party vote share in past elections and I used that regression line to predict the two party vote shares in each state. The regression line showed a deviation from the y = x line that would indicate perfect predictive power from the polls. This deviation shows that polling tends to overestimate Democrats and underestimate Republicans.
+
+Using the 
 
 # How Did I Do?
 
 ## State Level Predictions
 
+![map of states within one rmse](../figures/within_rmse_map.png)
+
+![map of states within two rmse](../figures/within_2rmse_map.png)
+
+![map show overestimates of Trump](../figures/overestimated_trump_map.png)
+
+![map of error by state](../figures/error_by_state_map.png)
 
 ## National Level Predictions
 
 
 ## Win Probability
 
-Since the actual election only happens once, it is difficult to assess how 
-
-
+Since the actual election only happens once, it is difficult to assess how accurate my prediction of Trump having a 2.49% chance of winning. With that said, the fact that Biden won is reassuring because it is consistent with the idea that we should expect Biden to win.
 
 # The Error
 
@@ -116,4 +123,4 @@ Finally, my model also has the drawback of requiring that polling data from shor
 
 My model correctly predicted that Joe Biden would win. My national two-party popular vote prediction was within one RMSE of capturing the actual national two-party popular vote share. And my model correctly predicted the winning candidate in 48 states and the District of Columbia. 
 
-These accuracies seem to suggest that my model was reasonably effective. However, with heavy dependence on polling accuracy
+**These accuracies seem to suggest that my model was reasonably effective. However, with a lack of robustness due to heavy dependence on polling accuracy and a consistent underestimation of Trump's two party vote share in each state, it seems that my model does not capture the election exceptionally well.**
