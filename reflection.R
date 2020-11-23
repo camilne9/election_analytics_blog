@@ -137,4 +137,14 @@ analysis %>%
   select(state, incorrect_prediction) %>%
   group_by() %>% 
   summarize(brier_score = sum(incorrect_prediction)/n())
-  
+
+# I create a map showing whether I correctly or incorrectly predicted each state
+plot_usmap(data = analysis %>% mutate(incorrect_prediction = (trump_winner != trump_predicted_winner)), 
+           regions = "states", values = "incorrect_prediction") + 
+  scale_fill_manual(values = c("turquoise2", "black"), name = "state winner") +
+  theme_void()+
+  theme(legend.position = 'None')+
+  labs(title = "States where I Correctly Predicted the Winner",
+       subtitle = "Successful Cases Shown in Turquoise") 
+
+ggsave("../figures/accuracy_of_prediction.png", height = 6, width = 8)  
