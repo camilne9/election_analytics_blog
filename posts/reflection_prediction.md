@@ -62,19 +62,19 @@ Finally, I simulated the election 10,000 times using win probabilities determine
 
 **My model was based entirely on polling and historical data on the accuracy of polling.** I found that there is a strong correlation between polling close to the election and the election result. Thus, I fit a linear regression between the polling average and the actual two-party vote share in past elections. I used that regression line to predict the two party vote shares in each state based on polling in October. The regression line showed a deviation from the y = x line that would indicate perfect predictive power from the polls. This deviation shows that polling tends to overestimate Democrats and underestimate Republicans.
 
-Using the 
+Using the state-level two part vote share predictions, I made a national two party vote prediction by weighting the state level predictions by the size of their voting eligible populations (VEPs). Historical data indicated that this was a strong predictor even though turnout may be different across states.
+
+Finally, my simulation of the election used the historical win rate for Republicans when they poll in certain intervals. This gave me a win probability in each state which I treated as independent in 10,000 simulations.
 
 # How Did I Do?
 
 ## State Level Predictions
 
-I can first consider the 
+I can first consider the difference between what I predicted 
 
 ![map of error by state](../figures/error_by_state_map.png)
 
-
-
-On each of my state level predictions, there was a RMSE from my model of 2.73. This means that we can get more information about the accuracy of my prediction by considering my uncertainty. Below we can see which states has a difference between predicted and actual results that was within one or two RMSE 
+Each point estimate also had uncertainty. This means that we can get more information about the accuracy of my prediction by considering my uncertainty and not simply the point estimate. On each of my state level predictions, there was a RMSE from my model of 2.73 as found by an out of sample fit test (leave one out validation). Below we can see which states has a difference between predicted and actual results that was within one or two RMSE 
 
 ![map of states within one rmse](../figures/within_1rmse_map.png)
 
@@ -88,9 +88,27 @@ However, looking at RMSE does not consider whether my prediction over or underes
 
 ### Root Mean Squared Error
 
+Root Mean Squared Error (RMSE) is a measure of the accuracy of a prediction found by square rooting the sum the squares of the difference between the actual and predicted values.
+
+***RMSE  = (Σ(prediction - actual)^2)^.5***
+
+In this case, I can sum over the predictions I made in each state. **I find that I have a RMSE of 24.5.** This is fairly large indicating that the accuracy of my model was unexceptional.
+
 ### Brier Score
 
+I can also consider the quality of my prediction
+
+***Brier Score = 1/N * Σ(probability - outcome)^2***
+
+I did not generate state-level win probabilities, but I did make predictions for the winner in each state. If we take our probabilities to be 1 or 0 depending on my predicted winner, we can calculate a Brier Score. 
+
+Below is a map that shows which states I predicted the winner of correctly.
+
 ![map show overestimates of Trump](../figures/accuracy_of_prediction.png)
+
+I find that I have a Brier Score of 
+
+The contrast between my low Brier Score and high RMSE indicates that my point estimates for 
 
 ## Win Probability
 
@@ -98,9 +116,9 @@ Since the actual election only happens once, it is difficult to assess how accur
 
 # The Error
 
-My model consistently underestimated Trump's performance. The primary source of this error is presumably the polling error. My model used the fact that Republicans are chronically underestimated in the polls according to historical data. However, that was insufficient to account for the fact that the polls consistently underestimated Donald Trump. I discuss more about the 
+**My model consistently underestimated Trump's performance.** The primary source of this error is presumably the polling error. My model used the fact that Republicans are chronically underestimated in the polls according to historical data. However, that was insufficient to account for the fact that the polls consistently underestimated Donald Trump. I hypothesize that this could be caused by an increase in the politicization of the polls. Republicans may have been particularly disillusioned with the polls have 2016 where Clinton was projected to win comfortably. In order to investigate this we would need to collect data on people's opinion of the polls based on their political leanings. Or we could attempt to account for a shift in the polling accuracy by fitting the regression of my model to only more recent elections. 
 
-The two party vote shares predicted by my model were within one RMSE of the actual values in abut half the states and within two RMSE in most states, which suggests that the error was often within a reasonable margin of error of my point estimate. However the fact that the error in my predictions was consistently in the same direction (underestimating Trump) suggest a systematic, methodological error that causes this discrepancy.
+The two party vote shares predicted by my model were within one RMSE of the actual values in abut half the states and within two RMSE in most states, which suggests that the error was often within a reasonable margin of error of my point estimate. **However the fact that the error in my predictions was consistently in the same direction (underestimating Trump) suggests a systematic, methodological error that causes this discrepancy.**
 
 
 # Plan for Future Improvements
@@ -111,9 +129,9 @@ My model ultimately has a large dependency on the polls. In a sense, this means 
 
 I still believe that the principle of weighting the polls heavily (even if less than in my model) is not necessarily a poor decision, given that the **polls offer a direct lens in which to capture public opinion.** This prompts me to consider how I can still lean on the polls without doing too much to tie my fate to the fate of the polls.
 
-In order to keep a high level of dependence on the polls in a reasonable, it can become more **important to consider how the polling accuracy have changed over the years** (comparing between different election cycles). In my model I found that **on average the polls tend to underestimate the performance of the Republican party.** However, this effect may be more (or less) pronounced as a function of recency or when conditioned on other variables (like incumbency) which may generate a better model.
+In order to keep a high level of dependence on the polls in a reasonable, it can become more **important to consider how the polling accuracy have changed over the years** (comparing between different election cycles). In my model I found that **on average the polls tend to underestimate the performance of the Republican party.** However, as mentioned in the above section, this effect may be more (or less) pronounced as a function of recency or when conditioned on other variables (like incumbency) which may generate a better model.
 
-I could test this hypothesis by re-generating my model but restricting the polling data I look at either only recent elections or to look at elections with an incumbent running for re-election. I could then see which iteration of my model has the best in and out of sample fit. The difficulty in testing the relative quality of these models, however, comes from the fact that **these variations require using smaller data sets. This means that there are fewer elections to which these models are applicable which makes it more likely that they are over-fit to a hyper-specific subset of elections.** It is difficult to distinguish between a model with a strong ability to predict and a model that is over-fit.
+I could test these hypotheses by re-generating my model but restricting the polling data I look at either only recent elections or to look at elections with an incumbent running for re-election. I could then see which iteration of my model has the best in and out of sample fit. The difficulty in testing the relative quality of these models, however, comes from the fact that **these variations require using smaller data sets. This means that there are fewer elections to which these models are applicable which makes it more likely that they are over-fit to a hyper-specific subset of elections.** It is difficult to distinguish between a model with a strong ability to predict and a model that is over-fit.
 
 Alternatively I could hedge my bets with 
 
@@ -121,7 +139,7 @@ Alternatively I could hedge my bets with
 
 Since I used a linear regression model to make my predictions about the two-party vote share in each state, it was possible that my prediction in a given states be impossibly high (>100%) or impossibly low (<0%). In principle this poses an issue for my model because I would need to either manually prevent such a prediction, or I need to accept that I may make unreasonable predictions.
 
-However, **I still think that the linear regression was a reasonable choice.** The way my model was constructed started with a polling average, which must be from 0-100, and gave a correction due to historical trends. **The magnitude of the correction was much smaller than the proximity of polling averages to 0 and 100.** This means that the impossible predictions remain an unlikely edge case. If I were -however- to make changes to the model that allows for larger corrections to the polling averages, this is more likely to become a relevant issue as the probability of getting an impossible prediction increases. (If polling averages tended to be more toward the extremes I would have the same issue with the same correction term, but in that case I could still make strong electoral predictions by simply claiming that these states have a very predictable outcomes.) 
+However, **I still think that the linear regression was a reasonable choice.** The way my model was constructed started with a polling average, which must be from 0-100, and gave a correction due to historical trends. **The magnitude of the correction was much smaller than the proximity of polling averages to 0 and 100.** This means that the impossible predictions remain an unlikely edge case. If I were, however, to make changes to the model that allows for larger corrections to the polling averages, this is more likely to become a relevant issue as the probability of getting an impossible prediction increases. (If polling averages tended to be more toward the extremes I would have the same issue with the same small correction term, but in that case I could still make strong electoral predictions by simply claiming that these states have very predictable outcomes.) 
 
 Additionally, I could add considerations to the relatedness of different states. The results of different states tend to be correlated. For example, clusters of states in the Midwest 
 Since my 
@@ -129,11 +147,11 @@ Ignoring correlation has both pros and cons.
 
 My forecast should also explicitly predict the districts in Maine and Nebraska. My prediction only considered state wide polling. This means that I had no ability to predict a district voting different than the overall state.
 
-Finally, my model also has the drawback of requiring that polling data from shortly before the election be available. Since I use October polling data to make the prediction, before this data is available
+Finally, my model also has the drawback of requiring that polling data from shortly before the election be available. Since I use October polling data to make the prediction, before this data is available my model is not applicable; you would need to use the most recent polling as a proxy, but this greatly compromises the predictive power since the regession line is specifically October polling data.
 
 
 # Conclusion
 
 My model correctly predicted that Joe Biden would win. My national two-party popular vote prediction was within one RMSE of capturing the actual national two-party popular vote share. And my model correctly predicted the winning candidate in 48 states and the District of Columbia giving it a Brier score of .0392. 
 
-**These accurate predictions seem to suggest that my model was reasonably effective. However, with a lack of robustness due to heavy dependence on polling accuracy, a consistent underestimation of Trump's two party vote share in each state, and a large  it seems that my model does not capture the election exceptionally well.**
+**These accurate predictions seem to suggest that my model was reasonably effective. However, with a lack of robustness due to heavy dependence on polling accuracy, a consistent underestimation of Trump's two party vote share in each state, and a large RMSE, it seems that my model does not capture the election exceptionally well.**
