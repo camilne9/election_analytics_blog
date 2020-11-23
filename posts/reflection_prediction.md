@@ -86,6 +86,11 @@ However, looking at RMSE does not consider whether my prediction over or underes
 
 ## National Level Predictions
 
+### Root Mean Squared Error
+
+### Brier Score
+
+![map show overestimates of Trump](../figures/accuracy_of_prediction.png)
 
 ## Win Probability
 
@@ -122,13 +127,13 @@ Additionally, I could add considerations to the relatedness of different states.
 Since my 
 Ignoring correlation has both pros and cons. 
 
-Another time I would also explicitly predict the districts in Maine and Nebraska
+My forecast should also explicitly predict the districts in Maine and Nebraska. My prediction only considered state wide polling. This means that I had no ability to predict a district voting different than the overall state.
 
 Finally, my model also has the drawback of requiring that polling data from shortly before the election be available. Since I use October polling data to make the prediction, before this data is available
 
 
 # Conclusion
 
-My model correctly predicted that Joe Biden would win. My national two-party popular vote prediction was within one RMSE of capturing the actual national two-party popular vote share. And my model correctly predicted the winning candidate in 48 states and the District of Columbia. 
+My model correctly predicted that Joe Biden would win. My national two-party popular vote prediction was within one RMSE of capturing the actual national two-party popular vote share. And my model correctly predicted the winning candidate in 48 states and the District of Columbia giving it a Brier score of .0392. 
 
-**These accuracies seem to suggest that my model was reasonably effective. However, with a lack of robustness due to heavy dependence on polling accuracy and a consistent underestimation of Trump's two party vote share in each state, it seems that my model does not capture the election exceptionally well.**
+**These accurate predictions seem to suggest that my model was reasonably effective. However, with a lack of robustness due to heavy dependence on polling accuracy, a consistent underestimation of Trump's two party vote share in each state, and a large  it seems that my model does not capture the election exceptionally well.**
