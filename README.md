@@ -26,4 +26,4 @@ In general we can consider how unpredictable or unprecedented "shocks" influence
 This is my final post before the 2020 US Presidential Election. I will give my final prediction for the election including electoral predictions, state level popular vote predictions, and a national popular vote prediction. (11/1/2020)
 
 ## [Election Reflection](posts/reflection_prediction.md)
-I reflect on the accuracy of my prediction and I consider the good and bad qualities of my forecasting model. (11/23/2020)
+I reflect on the accuracy of my prediction and I consider the good and bad qualities of my forecasting model. I make hypotheses about what is responsible for my error. (11/23/2020)
