@@ -106,5 +106,38 @@ textplot_keyness(trump_keyness)
 ##### Application: Trump tweets ####
 #####------------------------------------------------------#
 
-# TODO
+trump_tweets <- read_csv("../data/trumptweets_2016-2020.csv")
 
+
+# Deleted tweets (no retweets)
+trump_tweets2 <- trump_tweets %>% 
+    filter(isRetweet == FALSE) 
+
+trump_tweets2 %>% 
+    filter(isDeleted)
+    
+tweet_corpus <- corpus(trump_tweets2, text_field = "text", docid_field = "id")
+
+tweet_toks <- tokens(tweet_corpus, 
+                      remove_punct = TRUE,
+                      remove_symbols = TRUE,
+                      remove_numbers = TRUE,
+                      remove_url = TRUE) %>% 
+    tokens_tolower() %>%
+    tokens_remove(pattern=c("joe","biden","donald","trump","president","kamala","harris", str_detect("@"))) %>%
+    tokens_remove(pattern=stopwords("en")) %>%
+    tokens_select(min_nchar=3) %>%
+    tokens_ngrams(n=2)
+
+tweet_dfm <- dfm(tweet_toks, groups = "isDeleted")
+
+tweet_stat_freq <- textstat_frequency(tweet_dfm)
+head(tweet_stat_freq, 100)
+
+textplot_wordcloud(tweet_dfm, color = c("red", "blue"), comparison = T)
+
+deleted_tweet_keyness <- textstat_keyness(tweet_dfm, target = "FALSE")
+textplot_keyness(deleted_tweet_keyness)
+
+trump_tweets$text <- gsub("https.*","", trump_tweets$text)
+trump_tweets$text <- gsub("@.*","", trump_tweets$text)
