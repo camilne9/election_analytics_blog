@@ -78,13 +78,13 @@ We can see that Trump tended to perform better than I predicted him to. Here is 
 
 ![map show overestimates of Trump](../figures/overestimated_trump_map.png)
 
-Whether my predictions over or underestimated Trump does not tell the whole story. **Each point estimate also had uncertainty.** This means that we can get more information about the accuracy of my prediction by considering my uncertainty and not simply the point estimate. On each of my state level predictions, there was a RMSE from my model of 2.73 as found by an out of sample fit test (leave one out validation). Below we can see which states has a difference between predicted and actual results that was within one or two RMSE: 
+Whether my predictions over or underestimated Trump does not tell the whole story. **Each point estimate also had uncertainty.** This means that we can get more information about the accuracy of my prediction by considering my uncertainty and not simply the point estimate. On each of my state level predictions, there was a RMSE from my model of 2.73 as found by an out of sample fit test (leave one out validation). Below we can see which states have a difference between predicted and actual results that was within one or two RMSE: 
 
 ![map of states within one rmse](../figures/within_1rmse_map.png)
 
 ![map of states within two rmse](../figures/within_2rmse_map.png)
 
-Here we see that almost all states had actual results within two RMSE of my prediction and that about half of the states had actual results within one RMSE of my prediction. Considering the size of the RMSE (2.73), this indicates that my predictions did not have a lot of precision at capturing the actual result.
+Here we see that **almost all states had actual results within two RMSE of my prediction and that about half of the states had actual results within one RMSE of my prediction.** Considering the size of the RMSE (2.73), this indicates that my predictions did not have a lot of precision at capturing the actual result.
 
 ## National Level Predictions
 
@@ -110,13 +110,13 @@ Below is a map that shows which states I predicted the winner of correctly.
 
 ![map show overestimates of Trump](../figures/accuracy_of_prediction.png)
 
-We can see that I correctly predicted 48 states and the District of Columbia. I predicted the wrong winner only in Florida and North Carolina. Using this, **I find that I have a Brier Score of 0.0392.** Considering that giving equal win probabilities to each candidate in each state gives a Brier Score of 0.25, *this is a low Brier Score.*
+We can see that I correctly predicted 48 states and the District of Columbia. I predicted the wrong winner only in Florida and North Carolina. Using this, **I find that I have a Brier Score of 0.0392.** Considering that giving equal win probabilities to each candidate in each state gives a Brier Score of 0.25. *This is a low Brier Score which suggests that my model was successful.*
 
 The contrast between my low Brier Score and high RMSE indicates that my point estimates were inaccurate, but they did not tend to be inaccurate in a way that changed which candidate would win. In this sense, the RMSE indicates that my low Brier Score does not mean that my point estimates were especially good.
 
 ### National Popular Vote
 
-I had predicted that Trump would get 46.1% of the national two-party popular vote. Trump actually got 48% of the national two-party popular vote. My prediction had a RMSE of 2.73. This means that my predicted two-party popular vote share was within one RMSE of the actual value. In other words, my national two-party vote share was within a reasonable margin of error from the actual national two-party vote share.
+I had predicted that Trump would get 46.1% of the national two-party popular vote. Trump actually got 48% of the national two-party popular vote. My prediction had a RMSE of 2.73. This means that my predicted two-party popular vote share was within one RMSE of the actual value. In other words, **my national two-party vote share was within a reasonable margin of error from the actual national two-party vote share.**
 
 ## Win Probability
 
@@ -126,7 +126,7 @@ Since the actual election only happens once, it is difficult to assess how accur
 
 **My model consistently underestimated Trump's performance.** The primary source of this error is presumably the polling error. My model used the fact that Republicans are chronically underestimated in the polls according to historical data. However, that was insufficient to account for the fact that the polls consistently underestimated Donald Trump. I hypothesize that this could be caused by an increase in the politicization of the polls. Republicans may have been particularly disillusioned with the polls in 2016 where Clinton was projected to win comfortably. In order to investigate this we would need to collect data on people's opinion of the polls based on their political leanings. Or we could attempt to account for a shift in the polling accuracy by fitting the regression of my model to only more recent elections in which we would expect this polarization and politicization to have taken effect.
 
-On a different note, the two party vote shares predicted by my model were within one RMSE of the actual values in abut half the states and within two RMSE in most states, which suggests that the error was often within a reasonable margin of error of my point estimate. **However the fact that the error in my predictions was consistently in the same direction (underestimating Trump) suggests a systematic, methodological error that causes this discrepancy.**
+On a different note, the two party vote shares predicted by my model were within one RMSE of the actual values in abut half the states and within two RMSE in most states, which suggests that the error was often within a reasonable margin of error of my point estimate despite the fact that I did not have a lot of precision. **However the fact that the error in my predictions was consistently in the same direction (underestimating Trump) suggests a systematic, methodological error that causes this discrepancy.**
 
 
 ## Dependence on Polling
@@ -135,7 +135,7 @@ My model ultimately has a large dependency on the polls. In a sense, this means 
 
 **In the context of the coronavirus pandemic, I had made the choice to neglect many of the predictive variables that are traditionally used.** In particular, I suspected that historical trends in the impact of economic variables would break down given the record economic numbers and I suspected that any sort incumbency party advantage would also be confounded by the virus. This led me to lean more on the polling.
 
-I still believe that the principle of weighting the polls heavily (even if less than in my model) is not necessarily a poor decision, given that the **polls offer a direct lens in which to capture public opinion.** This prompts me to consider how I can still lean on the polls without doing too much to tie my model's fate to the fate of the polls.
+I still believe that the principle of weighting the polls heavily is not necessarily a poor decision, given that the **polls offer a direct lens in which to capture public opinion.** This prompts me to consider how I can still lean on the polls without doing too much to tie my model's fate to the fate of the polls.
 
 In order to keep a high level of dependence on the polls in a reasonable way, it can become more **important to consider how the polling accuracy have changed over the years** (comparing between different election cycles). In my model I found that **on average the polls tend to underestimate the performance of the Republican party.** However, as mentioned in the above section, this effect may be more pronounced as a function of recency. Alternatively it may depend on other variables, like incumbency, which would then be required to generate a better model.
 
