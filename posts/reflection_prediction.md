@@ -110,7 +110,7 @@ Below is a map that shows which states I predicted the winner of correctly.
 
 ![map show overestimates of Trump](../figures/accuracy_of_prediction.png)
 
-We can see that I correctly predicted 48 states and the District of Columbia. I predicted the wrong winner only in Florida and North Carolina. Using this, **I find that I have a Brier Score of 0.0392.** Considering that giving equal win probabilities to each candidate in each state gives a Brier Score of 0.25. *This is a low Brier Score which suggests that my model was successful.*
+We can see that I correctly predicted 48 states and the District of Columbia. I predicted the wrong winner only in Florida and North Carolina. Using this, **I find that I have a Brier Score of 0.0392.** Considering that giving equal win probabilities to each candidate in each state gives a Brier Score of 0.25, *this is a low Brier Score which suggests that my model was successful.*
 
 The contrast between my low Brier Score and high RMSE indicates that my point estimates were inaccurate, but they did not tend to be inaccurate in a way that changed which candidate would win. In this sense, the RMSE indicates that my low Brier Score does not mean that my point estimates were especially good.
 
@@ -153,7 +153,7 @@ However, **I still think that the linear regression was a reasonable choice.** M
 
 ## Correlations Between States
 
-I could add considerations to the relatedness of different states. The results of different states tend to be correlated. For example, clusters of states in the Midwest are likely to vote the same way. **This means that my simulations, which treated each state as having independent probabilities, does not actually capture the way states behave.** With that said, accurately determining these correlations may be difficult and introduce uncertainty. In that sense, omitting this variable allowed me to avoid this soure of error, which likely cost me some precision, particularly in the win probabilities I gave to each candidate. 
+I could add considerations to the relatedness of different states. The results of different states tend to be correlated. For example, clusters of states in the Midwest are likely to vote the same way. **This means that my simulations, which treated each state as having independent probabilities, do not actually capture the way states behave.** With that said, accurately determining these correlations may be difficult and introduce uncertainty. In that sense, omitting this variable allowed me to avoid this source of error, which likely cost me some precision, particularly in the win probabilities I gave to each candidate. 
 
 I could investigate this by re-running the simulations with the outcomes of different states being related and analyzing whether this drastically changed Trump's win probability. This is not the most important thing to inspect considering that I don't have a great way to assess what Trump's win probability actually was.
 
