@@ -91,7 +91,7 @@ plot_usmap(data = analysis, regions = "states", values = "error") +
     name = "Error"
   ) +
   theme_void()+
-  labs(title = "Difference Between Predict and Actual Vote Share for Trump",
+  labs(title = "Difference Between Predicted and Actual Vote Share for Trump",
        subtitle = "(Red Indicates Trump Outperfroming Prediction)") 
 
 ggsave("../figures/error_by_state_map.png", height = 6, width = 8)
@@ -121,8 +121,8 @@ plot_usmap(data = analysis, regions = "states", values = "underestimated_trump")
   scale_fill_manual(values = c("yellow", "black"), name = "state winner") +
   theme_void()+
   theme(legend.position = 'None')+
-  labs(title = "States where Trump Exceeded my Prediction",
-       subtitle = "Successful Cases Shown in Yellow") 
+  labs(title = "States where Trump did Worse than my Prediction",
+       subtitle = "(These States are Shown in Yellow)") 
 
 ggsave("../figures/overestimated_trump_map.png", height = 6, width = 8)
 
