@@ -46,24 +46,15 @@ In other words, while we can make inferences about the behavior of Hispanic vote
 
 ## Arizona
 
-<p float="left">
-  <img src="/az_demog.png" width="100" />
-  <img src="/az_margin.png" width="100" />
-</p>
+![AZ demographics](../figures/media_narrative_figures/az_demog.png) ![AZ margin](../figures/media_narrative_figures/az_margin.png)
 
 ## Florida
 
-<p float="left">
-  <img src="/fl_demog.png" width="100" />
-  <img src="/fl_margin.png" width="100" />
-</p>
+![FL demographics](../figures/media_narrative_figures/fl_demog.png) ![FL margin](../figures/media_narrative_figures/fl_margin.png)
 
 ## Texas
 
-<p float="left">
-  <img src="/tx_demog.png" width="100" />
-  <img src="/tx_margin.png" width="100" />
-</p>
+![TX demographics](../figures/media_narrative_figures/tx_demog.png) ![TX margin](../figures/media_narrative_figures/tx_margin.png)
 
 
 # Conclusion
