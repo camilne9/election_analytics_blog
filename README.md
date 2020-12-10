@@ -27,3 +27,7 @@ This is my final post before the 2020 US Presidential Election. I will give my f
 
 ## [Election Reflection](posts/reflection_prediction.md)
 I reflect on the accuracy of my prediction and I consider the good and bad qualities of my forecasting model. I make hypotheses about what is responsible for my error. (11/23/2020)
+
+## [Media Narrative](posts/narrative.md)
+The media often makes claims about why the election result is what we observe. In this post, I examine the media claim that Hispanic voters contributed significantly to Biden's win in 2020 and assess it's plausibility.
+
