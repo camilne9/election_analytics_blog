@@ -61,5 +61,5 @@ In other words, while we can make inferences about the behavior of Hispanic vote
 
 # Thank You
 
-This blog post marks the end of my work for Harvard government course 1347. I would like to think Professor Enos and TFs Sun Young Park and Shoubik for all their work this semester and the help they have given me in analyzing the 2020 election.
+This blog post marks the end of my work for Harvard government course 1347. I would like to think Professor Enos and TFs Sun Young Park and Soubhik Barari for all their work this semester and the help they have given me in analyzing the 2020 election.
 
