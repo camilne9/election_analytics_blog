@@ -9,9 +9,12 @@
 # The Data
 
 
+![verification of data](../figures/media_narrative_figures/verifying_data.png)
+
+
 # The Implication
 
-Elections are decided on the margin. We saw that Donald Trump won in 2016 but lost in 2020. A good way to consider 
+Elections are decided on the margin. We saw that Donald Trump won in 2016 but lost in 2020. A good way to consider  
 
 # Ecological Fallacy
 
@@ -20,7 +23,50 @@ Currently, we do not have complete data on voting percentages for each candidate
 
 In other words, while we can make inferences about the behavior of Hispanic voters based on the data we have, we cannot fully confirm or deny media narratives about Hispanic voters without data on how these people voted. 
 
+# Testing the Implication
 
+## Nationally
+
+![every county together](../figures/media_narrative_figures/national_hvm.png)
+
+![state by state](../figures/media_narrative_figures/states_hvm.png)
+
+## Populous States
+
+![table of states with largest Hispanic population](../figures/media_narrative_figures/hispanic_population.png)
+
+![states with large Hispanic populations](../figures/media_narrative_figures/populous_hvm.png)
+
+## Close States
+
+![close states](../figures/media_narrative_figures/close_hvm.png)
+
+
+# Qualitiative Visualization
+
+## Arizona
+
+<p float="left">
+  <img src="/az_demog.png" width="100" />
+  <img src="/az_margin.png" width="100" />
+</p>
+
+## Florida
+
+<p float="left">
+  <img src="/fl_demog.png" width="100" />
+  <img src="/fl_margin.png" width="100" />
+</p>
+
+## Texas
+
+<p float="left">
+  <img src="/tx_demog.png" width="100" />
+  <img src="/tx_margin.png" width="100" />
+</p>
+
+
+# Conclusion
 
 # Thank You
 
