@@ -112,7 +112,7 @@ plot_usmap(data = results_demog,
   labs(title = "Percent Hispanic by County",
        subtitle = "In Arizona")
 
-ggsave("../figures/media_narrative_figures/az_demog.png", height = 2, width = 1)
+ggsave("../figures/media_narrative_figures/az_demog.png", height = 4, width = 4)
 
 # Second I show the change in Democratic Margin between 2016 and 2020.
 # This allows me to see qualitatively whether there is a correlation between
@@ -129,7 +129,7 @@ plot_usmap(data = results_demog %>%
   labs(title = "Change in Democratic Margin by County",
        subtitle = "In Arizona")
 
-ggsave("../figures/media_narrative_figures/az_margin.png", height = 2, width = 1)
+ggsave("../figures/media_narrative_figures/az_margin.png", height = 4, width = 4)
 
 
 # Now I repeat the two former maps, but in Florida specifically.
@@ -145,7 +145,7 @@ plot_usmap(data = results_demog,
   labs(title = "Percent Hispanic by County",
        subtitle = "In Florida")
 
-ggsave("../figures/media_narrative_figures/fl_demog.png", height = 2, width = 1)
+ggsave("../figures/media_narrative_figures/fl_demog.png", height = 4, width = 4)
 
 # Here is the visualization of the change in win margin.
 plot_usmap(data = results_demog %>% 
@@ -160,7 +160,7 @@ plot_usmap(data = results_demog %>%
   labs(title = "Change in Democratic Margin by County",
        subtitle = "In Florida")
 
-ggsave("../figures/media_narrative_figures/fl_margin.png", height = 2, width = 1)
+ggsave("../figures/media_narrative_figures/fl_margin.png", height = 4, width = 4)
 
 # Finally, I repeat the two former maps, but in Texas.
 # Here is the visualization of the demographics.
@@ -175,7 +175,7 @@ plot_usmap(data = results_demog,
   labs(title = "Percent Hispanic by County",
        subtitle = "In Texas")
 
-ggsave("../figures/media_narrative_figures/tx_demog.png", height = 2, width = 1)
+ggsave("../figures/media_narrative_figures/tx_demog.png", height = 4, width = 4)
 
 # Here is the visualization of the change in win margin.
 plot_usmap(data = results_demog %>% 
@@ -190,7 +190,7 @@ plot_usmap(data = results_demog %>%
   labs(title = "Change in Democratic Margin by County",
        subtitle = "In Texas")
 
-ggsave("../figures/media_narrative_figures/tx_margin.png", height = 2, width = 1)
+ggsave("../figures/media_narrative_figures/tx_margin.png", height = 4, width = 4)
 
 
 # I show the Hispanic Population percentage vs the change in margin for all counties for 
