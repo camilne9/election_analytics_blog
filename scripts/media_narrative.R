@@ -230,7 +230,7 @@ demographics %>%
   mutate(State = state, 
          "Hispanic Population (%)" = round(Hispanic, 2)) %>% 
   arrange(desc(Hispanic)) %>% 
-  select(State, "Hispanic Population (%)") %>% 
+  select(State, "Hispanic Population (%)") %>%
   head(6) %>% 
   gt() %>% 
   tab_header("States with Largest Hispanic Populations") %>% 
