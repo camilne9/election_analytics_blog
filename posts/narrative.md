@@ -10,7 +10,7 @@ The media has made many claims about the role of the Hispanic and Latinx voters.
 
 # The Data
 
-To explore this media narrative, I will be using the county by county results from the 2020 election. I also I have the margin (in percentage points) in each county in the 2016 election. (I do not have county results for Alaska in 2020, but even without this data I can reasonably explore trends in the county level data, particularly as Alaska was not especially competetive and it does not have a particularly large Hispanic population.) Combining these two data sets, I will be compare the margin between Republicans and Democrats in each county to find the **change in the Democratic margin from 2016 to 2020**. The fact that I am considering the *Democratic margin* simply means that if the Republicans performed better in 2020 than 2016 the value will be negative. 
+To explore this media narrative, I will be using the county by county results from the 2020 election. I also I have the margin (in percentage points) in each county in the 2016 election. (I do not have county results for Alaska in 2020, but even without this data I can reasonably explore trends in the county level data, particularly as Alaska was not especially competitive and it does not have a particularly large Hispanic population.) Combining these two data sets, I will be compare the margin between Republicans and Democrats in each county to find the **change in the Democratic margin from 2016 to 2020**. The fact that I am considering the *Democratic margin* simply means that if the Republicans performed better in 2020 than 2016 the value will be negative. 
 
 In terms of demographic data, I have information about the demographic composition of each county in 2016. In particular, know the percentage of the population that is Hispanic in each county. I do not have this data for 2020, but I can reasonably assume that th
 
@@ -38,27 +38,35 @@ In other words, while we can make inferences about the behavior of Hispanic vote
 
 ## Nationally
 
-To test the effect of Hispanic Voters, I can plot 
+To test the effect of Hispanic Voters, I can plot the change in the Democratic margin from 2016 to 2020 against the perentage of the county population that is Hispanic.
 
 ![every county together](../figures/media_narrative_figures/national_hvm.png)
 
+From this plot 
+
+Since the presidential election is decided state by state, we can consider how the this trend decomposes on a state by state basis. I plot the same trend broken down for each state.
+
 ![state by state](../figures/media_narrative_figures/states_hvm.png)
 
-In this plot we see that many of the states have relationships very close to horizontal. These relationships suggest that, at least in these states, the media narrative does not describe the election well.
+In this plot we see that many of the states have relationships very close to horizontal. These relationships suggest that, at least in these states, the media narrative does not describe the election well. However, some of these states do show a notable slope. I will now consider some states more closely.
 
 ## Populous States
 
+Since we are looking for evidence for or against the media narrative that Hispanic voters are pivotal, it is important to pay particularly close attention to states with large Hispanic populations (by percentage) because Hispanic voters will be more prone to indeed swing the result of the election. These are the states with the largest 
 
 ![table of states with largest Hispanic population](../figures/media_narrative_figures/hispanic_population.png)
+
+We can now take a closer look at the trends in these states.
 
 ![states with large Hispanic populations](../figures/media_narrative_figures/populous_hvm.png)
 
 ## Close States
 
-Since we are considering whether Hispanic Voters were pivotal, it is especially important to consider states with close results because in these states, although there may not be a large Hispanic population, it does not take as many votes to flip the result. 
+Since we are considering whether Hispanic Voters were pivotal, it is also especially important to consider states with close results because in these states, although there may not be a large Hispanic population, **it does not take as many votes to flip the result**. 
 
 ![close states](../figures/media_narrative_figures/close_hvm.png)
 
+In this plot we see that these states have weak relations with slightly positive slopes. This means that in counties with greater Hispanic proportions Democrats tended to do better in 2020 than 2016. However, since these trends are not pronounced
 
 # Qualitiative Visualization
 
@@ -66,16 +74,25 @@ Since we are considering whether Hispanic Voters were pivotal, it is especially 
 
 ![AZ demographics](../figures/media_narrative_figures/az_demog.png) ![AZ margin](../figures/media_narrative_figures/az_margin.png)
 
+In these maps, we can see qualitatively what we saw above in the plot for Arizona of the change in the Democratic margin vs the percent of the population of the county that is Hispanic: there is not strong trend. If we look at the counties with larger Hispanic percentages (darker purple) we do not see a trend in the change shown in the following map. Therefore, **Arizona data opposes the media narrative that Hispanic voters were pivotal**.
+
 ## Florida
 
 ![FL demographics](../figures/media_narrative_figures/fl_demog.png) ![FL margin](../figures/media_narrative_figures/fl_margin.png)
+
+These maps of Florida support the media narrative. Qualitatively, we see that counties with large Hispanic populations (dark purple in first map) tend to show large negative shifts in the margin (darker red in second map). This means that there is evidence that suggests that Hispanic voters were pivotal in making Florida more Republican than it was in 2016.
 
 ## Texas
 
 ![TX demographics](../figures/media_narrative_figures/tx_demog.png) ![TX margin](../figures/media_narrative_figures/tx_margin.png)
 
+From these maps, it seems that Texas also supports the media narrative. Counties with large Hispanic populations (dark purple in first map) tend to show large negative shifts in the margin (darker red in second map).
 
 # Conclusion
+
+Ultimately I found more evidence that Hispanic voters were unpredictable than that they were pivotal. In certain states this demographic certainly seemed to be pivotal 
+
+States that supported the media narrative tended to have negative slopes. This means that when Hispanic voters were particularly impactful in changing the election result in 2020 as opposed to 2016, they tended to vote Republican. However, this may be due to the fact that counties with high proportions of Hispanic voters voted very Democratic in 2016 and thus did not have as much ability to shift dramatically to be more Democratic. 
 
 # Thank You
 
