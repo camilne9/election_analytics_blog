@@ -261,6 +261,26 @@ results_demog %>%
 
 ggsave("../figures/media_narrative_figures/populous_hvm.png", height = 6, width = 8)
 
+# I find the r-squared of the regression lines for each of the plot above
+summary(lm(change~Hispanic, data = results_demog %>% 
+             filter(state == "AZ") %>% 
+             mutate(change = D_margin_2020-D_margin_2016)))$r.squared
+summary(lm(change~Hispanic, data = results_demog %>% 
+             filter(state == "FL") %>% 
+             mutate(change = D_margin_2020-D_margin_2016)))$r.squared
+summary(lm(change~Hispanic, data = results_demog %>% 
+             filter(state == "TX") %>% 
+             mutate(change = D_margin_2020-D_margin_2016)))$r.squared
+summary(lm(change~Hispanic, data = results_demog %>% 
+             filter(state == "CA") %>% 
+             mutate(change = D_margin_2020-D_margin_2016)))$r.squared
+summary(lm(change~Hispanic, data = results_demog %>% 
+             filter(state == "NM") %>% 
+             mutate(change = D_margin_2020-D_margin_2016)))$r.squared
+summary(lm(change~Hispanic, data = results_demog %>% 
+             filter(state == "NV") %>% 
+             mutate(change = D_margin_2020-D_margin_2016)))$r.squared
+
 # I also check the states with small margins of victory because a sinlge demographic
 # could be pivotal in those states.
 results_demog %>% 
@@ -279,4 +299,17 @@ results_demog %>%
   theme(legend.position = 'None')
 
 ggsave("../figures/media_narrative_figures/close_hvm.png", height = 6, width = 8)
+
+summary(lm(change~Hispanic, data = results_demog %>% 
+             filter(state == "NC") %>% 
+             mutate(change = D_margin_2020-D_margin_2016)))$r.squared
+summary(lm(change~Hispanic, data = results_demog %>% 
+             filter(state == "GA") %>% 
+             mutate(change = D_margin_2020-D_margin_2016)))$r.squared
+summary(lm(change~Hispanic, data = results_demog %>% 
+             filter(state == "PA") %>% 
+             mutate(change = D_margin_2020-D_margin_2016)))$r.squared
+summary(lm(change~Hispanic, data = results_demog %>% 
+             filter(state == "WI") %>% 
+             mutate(change = D_margin_2020-D_margin_2016)))$r.squared
  
