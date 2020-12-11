@@ -209,6 +209,11 @@ results_demog %>%
 
 ggsave("../figures/media_narrative_figures/national_hvm.png", height = 6, width = 8)
 
+# I generate the Regression Line Object:
+lm_counties <- lm(change ~ Hispanic, data = results_demog %>% 
+                   mutate(change = D_margin_2020-D_margin_2016))
+summary(lm_counties)  
+
 # I show the trend state by state instead of all at once. This plot is hard to read
 # so I will isolate some key states.
 results_demog %>% 
